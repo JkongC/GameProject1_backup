@@ -13,7 +13,7 @@ public:
 
 	void InputHandle(const ExMessage& msg) override;
 
-	POINT GetCenter();
+	Pos GetCenter();
 
 	~Player();
 private:
@@ -28,5 +28,5 @@ private:
 	bool space_pressed;
 	const int cooldown = 1000;
 	int counter;
-	Vec2d mouse_pos;
+	Pos mouse_pos;
 };

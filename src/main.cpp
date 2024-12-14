@@ -1,9 +1,11 @@
 ﻿#pragma comment(lib, "Shcore.lib")
+#pragma comment(lib, "Gdi32.lib")
 
 #include <Windows.h>
 #include <tchar.h>
 #include <easyx.h>
 #include <ShellScalingApi.h>
+#include <wingdi.h>
 #include <chrono>
 #include <memory>
 #include <vector>
@@ -39,6 +41,7 @@ void FreeResources()
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow) 
 {
 	SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);  //让窗口大小不受系统缩放设置影响
+	SetGraphicsMode(GetImageHDC(), GM_ADVANCED);
 
 	LoadResources();
 	
@@ -71,7 +74,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 		cleardevice();
 
-		putimage(0, 0, &game_background);
+		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
+		putimage(background.x, background.y, &game_background);
 		p1.Render();
 
 		FlushBatchDraw();

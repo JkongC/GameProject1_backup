@@ -6,7 +6,7 @@ class Object
 {
 protected:
 	Object() 
-		: width(0), height(0), pos({0, 0}), life(0), show(true), speed({0, 0}), acceleration({0, 0}), belong(nullptr)
+		: width(0), height(0), pos({0, 0}), life(0), show(true), speed({0, 0}), acceleration({0, 0}), scene_belong(nullptr)
 	{};
 
 public:
@@ -20,12 +20,12 @@ public:
 
 	int width;
 	int height;
-	POINT pos;
+	Pos pos;
 	int life;
 	bool show;
 
 	Vec2d speed;
 	Vec2d acceleration;
 
-	Scene* belong;
+	Scene* scene_belong;
 };

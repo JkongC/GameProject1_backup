@@ -8,7 +8,36 @@
 #define window_x 1171
 #define window_y 736
 
+#define world_x 3000
+#define world_y 3000
+
 #include <cmath>
+
+struct Pos
+{
+	LONG x = 0;
+	LONG y = 0;
+
+	Pos operator+(const Pos& another) {
+		return { this->x + another.x, this->y + another.y };
+	}
+
+	Pos& operator+=(const Pos& another) {
+		this->x += another.x;
+		this->y += another.y;
+		return *this;
+	}
+
+	Pos operator-(const Pos& another) {
+		return { this->x - another.x, this->y - another.y };
+	}
+
+	Pos& operator-=(const Pos& another) {
+		this->x -= another.x;
+		this->y -= another.y;
+		return *this;
+	}
+};
 
 struct Vec2d 
 {
@@ -16,7 +45,7 @@ struct Vec2d
 	double y = 0.0;
 	double scale = 1.0;
 
-	void Friction(float friction) {
+	void Friction(double friction) {
 		double new_scale = scale*(1 - friction);
 		if (new_scale < 0.2) {
 			x = 0;

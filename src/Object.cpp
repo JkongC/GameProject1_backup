@@ -6,5 +6,5 @@
 #include "Object.h"
 
 const Scene* Object::GetScene() {
-	return this->belong;
+	return this->scene_belong;
 }

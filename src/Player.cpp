@@ -20,12 +20,13 @@ Player::Player(Scene& scene)
 	this->height = ani_list[0]->GetHeight();
 	this->speed = { 0, 0 };
 	this->acceleration = { 0, 0 };
-	this->belong = &scene;
+	this->scene_belong = &scene;
 }
 
 void Player::Render() {
 	if (!this->show) return;
-	ani_list[current_ani_set]->Render(pos.x, pos.y);
+	Pos relative = this->scene_belong->GetCamera().GetRelativePos(this->pos);
+	ani_list[current_ani_set]->Render(relative.x, relative.y);
 }
 
 void Player::Tick(const int& delta) {
@@ -34,7 +35,7 @@ void Player::Tick(const int& delta) {
 
 	if (space_pressed && counter >= cooldown) {
 		counter = 0;
-		POINT center = GetCenter();
+		Pos center = GetCenter();
 		Vec2d direction = { mouse_pos.x - center.x, mouse_pos.y - center.y};
 		direction.Normalize(60);
 		speed += direction;
@@ -44,20 +45,21 @@ void Player::Tick(const int& delta) {
 		counter = 0;
 	}
 
-	if (this->pos.x + speed.x > 0 && this->pos.x + speed.x < window_x - width) {
+	if (this->pos.x + speed.x > 0 && this->pos.x + speed.x < world_x - width) {
 		pos.x += (int)(speed.x * delta / 100);
 	}
 	else {
 		speed.x = 0;
 	}
 
-	if (this->pos.y + speed.y > 0 && this->pos.y + speed.y < window_y - height) {
+	if (this->pos.y + speed.y > 0 && this->pos.y + speed.y < world_y - height) {
 		pos.y += (int)(speed.y * delta / 100);
 	}
 	else {
 		speed.y = 0;
 	}
 
+	this->scene_belong->GetCamera().SetPos(this->GetCenter());
 	speed.Friction(friction);
 }
 
@@ -71,14 +73,13 @@ void Player::InputHandle(const ExMessage& msg) {
 		this->space_pressed = false;
 		break;
 	case WM_MOUSEMOVE:
-		this->mouse_pos.x = msg.x;
-		this->mouse_pos.y = msg.y;
+		this->mouse_pos = this->scene_belong->GetCamera().GetAbsolutePos({ msg.x, msg.y });
 	default:
 		break;
 	}
 }
 
-POINT Player::GetCenter() {
+Pos Player::GetCenter() {
 	return { this->pos.x + this->width / 2, this->pos.y + this->health / 2 };
 }
 
