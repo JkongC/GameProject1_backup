@@ -1,4 +1,4 @@
-#include <vector>
+﻿#include <vector>
 #include <easyx.h>
 #include <chrono>
 #include "util.h"

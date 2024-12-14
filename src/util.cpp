@@ -1,4 +1,4 @@
-#include <easyx.h>
+﻿#include <easyx.h>
 #include <chrono>
 #include "util.h"
 

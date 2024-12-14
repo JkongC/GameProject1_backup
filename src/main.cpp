@@ -1,4 +1,4 @@
-#pragma comment(lib, "Shcore.lib")
+ï»¿#pragma comment(lib, "Shcore.lib")
 
 #include <Windows.h>
 #include <tchar.h>
@@ -15,16 +15,16 @@
 #include "event.h"
 #include "resource.h"
 
-//ÔÚÕâÀïÉùÃ÷ÒªÓÃµ½µÄÍ¼Æ¬£¬ÏÂÃæÖ»ÊÇÀı×Ó
+//åœ¨è¿™é‡Œå£°æ˜è¦ç”¨åˆ°çš„å›¾ç‰‡ï¼Œä¸‹é¢åªæ˜¯ä¾‹å­
 IMAGE player_right_img;
-std::unique_ptr<Animation> player_right;  //Ê¹ÓÃÖÇÄÜÖ¸ÕëµÄ»°£¬²»ÓÃÊÖ¶¯ÊÍ·Å×ÊÔ´
+std::unique_ptr<Animation> player_right;  //ä½¿ç”¨æ™ºèƒ½æŒ‡é’ˆçš„è¯ï¼Œä¸ç”¨æ‰‹åŠ¨é‡Šæ”¾èµ„æº
 
 IMAGE game_background;
 
 inline int LoadResources() 
 {
 	loadimage(&player_right_img, _T("PNG"), MAKEINTRESOURCE(GAME_TEST), 60, 17, true);
-	//make_uniqueµÄ×÷ÓÃÊÇnewÒ»¸ö¶ÔÏóÈ»ºó»ñÈ¡ËüµÄunique_ptr
+	//make_uniqueçš„ä½œç”¨æ˜¯newä¸€ä¸ªå¯¹è±¡ç„¶åè·å–å®ƒçš„unique_ptr
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BACKGROUND), window_x, window_y, true);
@@ -38,22 +38,22 @@ void FreeResources()
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow) 
 {
-	SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);  //ÈÃ´°¿Ú´óĞ¡²»ÊÜÏµÍ³Ëõ·ÅÉèÖÃÓ°Ïì
+	SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);  //è®©çª—å£å¤§å°ä¸å—ç³»ç»Ÿç¼©æ”¾è®¾ç½®å½±å“
 
 	LoadResources();
 	
 	initgraph(window_x, window_y, EX_NOCLOSE);
 	bool running = true;
 
-	Scene scene;  //³¡¾°
-	InputEvent input;  //ÊäÈëÊÂ¼ş£¬ÔİÊ±Ö»´¦Àí¿Õ¸ñ
+	Scene scene;  //åœºæ™¯
+	InputEvent input;  //è¾“å…¥äº‹ä»¶ï¼Œæš‚æ—¶åªå¤„ç†ç©ºæ ¼
 
-	Player p1(scene);  //Íæ¼Ò
-	input.AddConcern(&p1);  //ÈÃÍæ¼Ò¹Ø×¢ÊäÈëÊÂ¼ş
+	Player p1(scene);  //ç©å®¶
+	input.AddConcern(&p1);  //è®©ç©å®¶å…³æ³¨è¾“å…¥äº‹ä»¶
 
 	BeginBatchDraw();
-	Timer timer;  //ºÁÃë¼ÆÊ±Æ÷
-	timer.Start();  //¿ªÊ¼¼ÆÊ±
+	Timer timer;  //æ¯«ç§’è®¡æ—¶å™¨
+	timer.Start();  //å¼€å§‹è®¡æ—¶
 	while (true) 
 	{
 		
@@ -62,7 +62,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		while (peekmessage(&msg)) 
 		{
 			if (msg.vkcode == VK_SPACE || msg.message == WM_MOUSEMOVE) {
-				input.Emit(msg);  //ÈÃ¹Ø×¢ÊäÈëÊÂ¼şµÄ¶ÔÏó½øĞĞ´¦Àí
+				input.Emit(msg);  //è®©å…³æ³¨è¾“å…¥äº‹ä»¶çš„å¯¹è±¡è¿›è¡Œå¤„ç†
 			}
 			else if (msg.vkcode == VK_ESCAPE) {
 				running = false;
@@ -76,7 +76,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 		FlushBatchDraw();
 		
-		auto& time_elapsed = timer.SinceLast();  //¼ÆËã×Ô´ÓÉÏ´Îµ÷ÓÃStart»òSinceLastÒÔÀ´£¬¾­¹ıµÄÊ±¼ä
+		auto& time_elapsed = timer.SinceLast();  //è®¡ç®—è‡ªä»ä¸Šæ¬¡è°ƒç”¨Startæˆ–SinceLastä»¥æ¥ï¼Œç»è¿‡çš„æ—¶é—´
 
 		p1.Tick(time_elapsed);
 

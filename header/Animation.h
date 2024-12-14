@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 class Animation {
 public:
 	Animation() = default;
 	
-	//scale�ǷŴ�������Է�ԭͼ̫С
+	//scale是放大比例，以防原图太小
 	Animation(IMAGE new_atlas, int width, int height, int interval, int frame_num, int scale);
 
 	void Render(int x, int y);

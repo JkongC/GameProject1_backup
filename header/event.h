@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-//´¦ÀíWASD°´¼ü
+//å¤„ç†WASDæŒ‰é”®
 class InputEvent {
 public:
 	void Emit(const ExMessage& msg);
