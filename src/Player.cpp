@@ -11,7 +11,7 @@
 extern std::unique_ptr<Animation> player_right;
 
 Player::Player(Scene& scene)
-	:current_ani_set(0), health(0), space_pressed(false), counter(0), mouse_pos({0, 0})
+	:current_ani_set(0), health(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(true)
 {
 	this->pos = { 500, 500 };
 	ani_list.push_back(player_right.get());
@@ -59,7 +59,9 @@ void Player::Tick(const int& delta) {
 		speed.y = 0;
 	}
 
-	this->scene_belong->GetCamera().SetPos(this->GetCenter());
+	if (this->lock_camera) {
+		this->scene_belong->GetCamera().SetPos(this->GetCenter());
+	}
 	speed.Friction(friction);
 }
 

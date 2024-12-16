@@ -18,6 +18,8 @@ public:
 	
 	virtual void InputHandle(const ExMessage& msg) {};
 
+	virtual Pos GetCenter() = 0;
+
 	int width;
 	int height;
 	Pos pos;

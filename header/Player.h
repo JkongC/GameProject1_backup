@@ -29,4 +29,6 @@ private:
 	const int cooldown = 1000;
 	int counter;
 	Pos mouse_pos;
+
+	bool lock_camera;
 };

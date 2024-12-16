@@ -56,7 +56,7 @@ public:
 	
 	void ClearObjects();
 
-	Scene() : current_scene(SceneType::Menu), camera() {}
+	Scene() : current_scene(SceneType::Menu), menu_camera(), game_camera() {}
 
 	~Scene() = default;
 
@@ -65,7 +65,8 @@ private:
 	SceneType current_scene;
 	std::vector<Object*> menu_objects;
 	std::vector<Object*> game_objects;
-	Camera camera;
+	Camera menu_camera;
+	Camera game_camera;
 
 	std::vector<Object*>& GetCurrentObjectList();
 };

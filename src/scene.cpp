@@ -85,11 +85,31 @@ void Scene::Tick(const int& delta) {
 	for (Object* obj : GetObjects()) {
 		obj->Tick(delta);
 	}
-	this->camera.Update();
+	switch (this->current_scene)
+	{
+	case SceneType::Menu:
+		this->menu_camera.Update();
+		break;
+	case SceneType::Game:
+		this->game_camera.Update();
+		break;
+	default:
+		break;
+	}
 }
 
 Camera& Scene::GetCamera() {
-	return this->camera;
+	switch (this->current_scene)
+	{
+	case SceneType::Menu:
+		return this->menu_camera;
+		break;
+	case SceneType::Game:
+		return this->game_camera;
+		break;
+	default:
+		break;
+	}
 }
 
 void Scene::Render() {

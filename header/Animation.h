@@ -20,7 +20,7 @@ private:
 	int width;
 	int height;
 	IMAGE* atlas;
-	int frame_amounts;
+	int frame_amount;
 	int current_idx;
 	int interval;
 	int counter;

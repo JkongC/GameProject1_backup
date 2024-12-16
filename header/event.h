@@ -1,7 +1,8 @@
 ﻿#pragma once
 
-//处理WASD按键
-class InputEvent {
+//处理输入按键
+class InputEvent 
+{
 public:
 	void Emit(const ExMessage& msg);
 

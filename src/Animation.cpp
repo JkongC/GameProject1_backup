@@ -9,7 +9,7 @@
 #include "util.h"
 
 Animation::Animation(IMAGE new_atlas, int width, int height, int interval, int frame_num, int scale)
-	:interval(interval), frame_amounts(frame_num), current_idx(0), counter(0)
+	:interval(interval), frame_amount(frame_num), current_idx(0), counter(0)
 {
 	IMAGE* actual;
 	this->width = width * scale;
@@ -28,7 +28,7 @@ void Animation::Tick(const int& delta) {
 		counter = 0;
 		current_idx++;
 	}
-	current_idx %= frame_amounts;
+	current_idx %= frame_amount;
 }
 
 const int& Animation::GetWidth() {
