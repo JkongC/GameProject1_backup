@@ -62,6 +62,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		
 		ExMessage msg;
 
+		//消息处理
 		while (peekmessage(&msg)) 
 		{
 			if (msg.vkcode == VK_SPACE || msg.message == WM_MOUSEMOVE) {

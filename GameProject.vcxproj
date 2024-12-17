@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Animation.h" />
+    <ClInclude Include="header\Buttton.h" />
     <ClInclude Include="header\event.h" />
     <ClInclude Include="header\Object.h" />
     <ClInclude Include="header\Player.h" />

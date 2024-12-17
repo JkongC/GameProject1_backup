@@ -11,7 +11,7 @@
 extern std::unique_ptr<Animation> player_right;
 
 Player::Player(Scene& scene)
-	:current_ani_set(0), health(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(true)
+	:current_ani_set(0), health(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false)
 {
 	this->pos = { 500, 500 };
 	ani_list.push_back(player_right.get());
