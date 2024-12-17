@@ -56,7 +56,27 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
 	timer.Start();  //开始计时
-	while (true) 
+
+	//初始化UI按钮
+	//创建开始游戏按钮
+	RECT startGameRect = { 100, 100, 300, 150 };
+	StartGameButton* startGameBtn = new StartGameButton(startGameRect, _T("start_game_idle.png"), _T("start_game_hovered.png"), _T("start_game_pushed.png"));
+	startGameBtn->scene_belong = &scene;
+	scene.AddObject(startGameBtn);
+
+	// 创建退出游戏按钮
+	RECT quitGameRect = { 100, 200, 300, 250 };
+	QuitGameButton* quitGameBtn = new QuitGameButton(quitGameRect, _T("quit_game_idle.png"), _T("quit_game_hovered.png"), _T("quit_game_pushed.png"));
+	quitGameBtn->scene_belong = &scene;
+	scene.AddObject(quitGameBtn);
+
+	// 创建设置按钮
+	RECT settingsRect = { 100, 300, 300, 350 };
+	SettingButton* settingsBtn = new SettingButton(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
+	settingsBtn->scene_belong = &scene;
+	scene.AddObject(settingsBtn);
+
+	while (running) 
 	{
 		
 		ExMessage msg;
@@ -70,6 +90,11 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 			else if (msg.vkcode == VK_ESCAPE) {
 				running = false;
 			}
+		}
+
+		while (peekmessage(&msg, EM_MOUSE | EM_KEY | EM_CLOSE)) 
+		{
+			scene.GetInputEvent().Emit(msg);
 		}
 
 		cleardevice();
