@@ -19,7 +19,7 @@
 const int BUTTON_WIDTH = 192;
 const int BUTTON_HEIGHT = 75;
 
-class Button
+class Button : public Object
 {
 public:
     Button(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_img_hovered, LPCTSTR path_img_pushed)
@@ -91,7 +91,7 @@ private:
     Status status = Status::Idle;
 
 private:
-    // ¼ì²âÊó±êµã»÷
+    // æ£€æµ‹é¼ æ ‡ç‚¹å‡»
     bool CheckCursorHit(int x, int y)
     {
         return x >= region.left && x <= region.right && y >= region.top && y <= region.bottom;
@@ -99,7 +99,7 @@ private:
 
 };
 
-// ¿ªÊ¼ÓÎÏ·°´Å¥
+// å¼€å§‹æ¸¸æˆæŒ‰é’®
 class StartGameButton : public Button
 {
 public:
@@ -117,7 +117,7 @@ protected:
     }
 };
 
-// ÍË³öÓÎÏ·°´Å¥
+// é€€å‡ºæ¸¸æˆæŒ‰é’®
 class QuitGameButton : public Button
 {
 public:
@@ -133,6 +133,7 @@ protected:
     }
 };
 
+//æ‰“å¼€è®¾ç½®ç•Œé¢æŒ‰é’®
 class SettingButton : public Button
 {
 public:
@@ -148,24 +149,18 @@ protected:
     }
 };
 
-void InitializeUI()
+//è¿”å›žæŒ‰é’®
+class BackButton : public Button
 {
-    IMAGE img_menu;
+public:
+    BackButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_img_hovered, LPCTSTR path_img_pushed)
+        : Button(rect, path_img_idle, path_img_hovered, path_img_pushed) {
+    }
+    ~BackButton() = default;
 
-    RECT region_btn_start_game, region_btn_quit_game;
+protected:
+    void OnClick()
+    {
 
-    region_btn_start_game.left = (window_x - BUTTON_WIDTH) / 2;
-    region_btn_start_game.right = region_btn_start_game.left + BUTTON_WIDTH;
-    region_btn_start_game.top = 430;
-    region_btn_start_game.bottom = region_btn_start_game.top + BUTTON_HEIGHT;
-
-    region_btn_quit_game.left = (window_x - BUTTON_WIDTH) / 2;
-    region_btn_quit_game.right = region_btn_quit_game.left + BUTTON_WIDTH;
-    region_btn_quit_game.top = 550;
-    region_btn_quit_game.bottom = region_btn_quit_game.top + BUTTON_HEIGHT;
-
-    StartGameButton btn_start_game = StartGameButton(region_btn_start_game,
-        _T("img/ui_start_idle.png"), _T("img/ui_start_hovered.png"), _T("img/ui_start_pushed.png"));
-    QuitGameButton btn_quit_game = QuitGameButton(region_btn_quit_game,
-        _T("img/ui_quit_idle.png"), _T("img/ui_quit_hovered.png"), _T("img/ui_quit_pushed.png"));
-}
+    }
+};
