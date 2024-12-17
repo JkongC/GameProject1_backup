@@ -1,9 +1,7 @@
-﻿#include <vector>
-#include <easyx.h>
-#include <chrono>
-#include "util.h"
-#include "Object.h"
-#include "event.h"
+﻿#include "stdlibs.h"
+#include "general/util.h"
+#include "object/Object.h"
+#include "general/event.h"
 
 void InputEvent::Emit(const ExMessage& msg) {
 	for (Object*& obj : input_concerned) {

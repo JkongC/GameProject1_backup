@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+
 class Object;
 class InputEvent;
 
@@ -38,9 +40,14 @@ class Scene {
 public:
 	enum class SceneType
 	{
-		MainMenu, Menu, Game
-	};
+		MainMenu = 0, Game, Settings, Void
+	};   //Void仅作占位符，不要切换到它，始终保证它在末尾
 
+	static Scene& GetScene() {
+		static Scene scene;
+		return scene;
+	}   //单例模式
+	
 	void Tick(const int& delta);
 
 	Camera& GetCamera();
@@ -59,19 +66,20 @@ public:
 	
 	void ClearObjects();
 
-	Scene() : current_scene(SceneType::Menu), menu_camera(), game_camera(), menu_inputevent(), game_inputevent() {}
+private:
+	Scene() : current_scene(SceneType::MainMenu) {}
+
+	Scene(const Scene&) = delete;
+
+	Scene& operator=(const Scene&) = delete;
 
 	~Scene() = default;
 
-
 private:
 	SceneType current_scene;
-	std::vector<Object*> menu_objects;
-	std::vector<Object*> game_objects;
-	Camera menu_camera;
-	Camera game_camera;
-	InputEvent menu_inputevent;
-	InputEvent game_inputevent;
+	std::array<std::vector<Object*>, (int)SceneType::Void> scene_obj_list;
+	std::array<Camera, (int)SceneType::Void> scene_cam_list;
+	std::array<InputEvent, (int)SceneType::Void> scene_inputevent_list;
 
 	std::vector<Object*>& GetCurrentObjectList();
 };

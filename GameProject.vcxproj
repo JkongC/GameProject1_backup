@@ -107,10 +107,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdlibs.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Shcore.lib;Gdi32.lib;Winmm.lib;Msimg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,30 +134,55 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Animation.cpp" />
-    <ClCompile Include="src\event.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Object.cpp" />
-    <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\scene.cpp" />
-    <ClCompile Include="src\util.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="header\Animation.h" />
-    <ClInclude Include="header\Buttton.h" />
-    <ClInclude Include="header\event.h" />
-    <ClInclude Include="header\Object.h" />
-    <ClInclude Include="header\Player.h" />
-    <ClInclude Include="header\scene.h" />
-    <ClInclude Include="header\util.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="resources\game_background.png" />
-    <Image Include="resources\test.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="GameProject.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\crystal.png" />
+    <Image Include="resources\game_bg1.png" />
+    <Image Include="resources\UI\arrow.png" />
+    <Image Include="resources\UI\BACK_hoverd.png" />
+    <Image Include="resources\UI\BACK_pushed.png" />
+    <Image Include="resources\UI\LEADERBOARD.png" />
+    <Image Include="resources\UI\quit_game_hovered.png" />
+    <Image Include="resources\UI\quit_game_idle.png" />
+    <Image Include="resources\UI\quit_game_pushed.png" />
+    <Image Include="resources\UI\Settings.png" />
+    <Image Include="resources\UI\start_game_hovered.png" />
+    <Image Include="resources\UI\start_game_idle.png" />
+    <Image Include="resources\UI\start_game_pushed.png" />
+    <Image Include="resources\UI\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\general\event.h" />
+    <ClInclude Include="header\general\globals.h" />
+    <ClInclude Include="header\general\scene.h" />
+    <ClInclude Include="header\general\SD_Music.h" />
+    <ClInclude Include="header\general\util.h" />
+    <ClInclude Include="header\object\Animation.h" />
+    <ClInclude Include="header\object\Arrow.h" />
+    <ClInclude Include="header\object\Object.h" />
+    <ClInclude Include="header\object\Player.h" />
+    <ClInclude Include="header\stdlibs.h" />
+    <ClInclude Include="header\ui\Arena.h" />
+    <ClInclude Include="header\ui\Button.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\general\event.cpp" />
+    <ClCompile Include="src\general\scene.cpp" />
+    <ClCompile Include="src\general\SD_music.cpp" />
+    <ClCompile Include="src\general\util.cpp" />
+    <ClCompile Include="src\main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\object\Animation.cpp" />
+    <ClCompile Include="src\object\Arrow.cpp" />
+    <ClCompile Include="src\object\Object.cpp" />
+    <ClCompile Include="src\object\Player.cpp" />
+    <ClCompile Include="src\stdlibs.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\ui\Arena.cpp" />
+    <ClCompile Include="src\ui\Button.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,67 +13,148 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Animation.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\util.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\event.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Object.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="header\Object.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Animation.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Player.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="header\util.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="header\scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="header\event.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Buttton.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="resources\test.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\game_background.png">
-      <Filter>资源文件</Filter>
-    </Image>
+    <Filter Include="头文件\ui">
+      <UniqueIdentifier>{1f909d9a-3267-48e8-8afc-73a17e51eb6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\general">
+      <UniqueIdentifier>{2701be47-2f77-4975-aca5-947ceb1b1f4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\object">
+      <UniqueIdentifier>{a4c1bbad-710d-43e0-8449-c4f5f5e0cc97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\general">
+      <UniqueIdentifier>{b1c6b233-e451-4f95-aa19-a8339001d7cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\object">
+      <UniqueIdentifier>{366084e6-fcce-401c-9f97-3c8b7788b5a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ui">
+      <UniqueIdentifier>{1b3a0e6d-7a92-4b0f-9fa6-e6a93947a9a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameProject.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\crystal.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\BACK_hoverd.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\BACK_pushed.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\LEADERBOARD.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\quit_game_hovered.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\quit_game_idle.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\quit_game_pushed.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\Settings.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\start_game_hovered.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\start_game_idle.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\start_game_pushed.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\arrow.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\UI\test.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\game_bg1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\general\event.h">
+      <Filter>头文件\general</Filter>
+    </ClInclude>
+    <ClInclude Include="header\general\globals.h">
+      <Filter>头文件\general</Filter>
+    </ClInclude>
+    <ClInclude Include="header\general\scene.h">
+      <Filter>头文件\general</Filter>
+    </ClInclude>
+    <ClInclude Include="header\general\SD_Music.h">
+      <Filter>头文件\general</Filter>
+    </ClInclude>
+    <ClInclude Include="header\general\util.h">
+      <Filter>头文件\general</Filter>
+    </ClInclude>
+    <ClInclude Include="header\object\Animation.h">
+      <Filter>头文件\object</Filter>
+    </ClInclude>
+    <ClInclude Include="header\object\Arrow.h">
+      <Filter>头文件\object</Filter>
+    </ClInclude>
+    <ClInclude Include="header\object\Object.h">
+      <Filter>头文件\object</Filter>
+    </ClInclude>
+    <ClInclude Include="header\object\Player.h">
+      <Filter>头文件\object</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Arena.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Button.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\stdlibs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\general\event.cpp">
+      <Filter>源文件\general</Filter>
+    </ClCompile>
+    <ClCompile Include="src\general\scene.cpp">
+      <Filter>源文件\general</Filter>
+    </ClCompile>
+    <ClCompile Include="src\general\SD_music.cpp">
+      <Filter>源文件\general</Filter>
+    </ClCompile>
+    <ClCompile Include="src\general\util.cpp">
+      <Filter>源文件\general</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\Arena.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\Button.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\Animation.cpp">
+      <Filter>源文件\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\Arrow.cpp">
+      <Filter>源文件\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\Object.cpp">
+      <Filter>源文件\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\Player.cpp">
+      <Filter>源文件\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlibs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

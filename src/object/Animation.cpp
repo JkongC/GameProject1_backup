@@ -1,12 +1,6 @@
-﻿#pragma comment(lib, "Msimg32.lib")
-
-#include <vector>
-#include <functional>
-#include <easyx.h>
-#include <ctime>
-#include <chrono>
-#include "Animation.h"
-#include "util.h"
+﻿#include "stdlibs.h"
+#include "general/util.h"
+#include "object/Animation.h"
 
 Animation::Animation(IMAGE new_atlas, int width, int height, int interval, int frame_num, int scale)
 	:interval(interval), frame_amount(frame_num), current_idx(0), counter(0)

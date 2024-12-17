@@ -5,8 +5,8 @@
 #define VK_S 0x53
 #define VK_D 0x44
 
-#define window_x 1171
-#define window_y 736
+#define window_x 1629
+#define window_y 1184
 
 #define world_x 3000
 #define world_y 3000
@@ -18,6 +18,10 @@ struct Pos
 	LONG x = 0;
 	LONG y = 0;
 
+	inline double GetDistanceFrom(const Pos& another) {
+		return sqrt((this->x - another.x) * (this->x - another.x) + (this->y - another.y) * (this->x - another.x));
+	}
+	
 	Pos operator+(const Pos& another) {
 		return { this->x + another.x, this->y + another.y };
 	}

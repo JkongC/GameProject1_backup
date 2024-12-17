@@ -1,14 +1,9 @@
-﻿#pragma comment(lib, "Gdi32.lib")
-
-#include <vector>
-#include <chrono>
-#include <easyx.h>
-#include <wingdi.h>
+﻿#include "stdlibs.h"
 #include <cmath>
-#include "util.h"
-#include "Object.h"
-#include "event.h"
-#include "scene.h"
+#include "general/util.h"
+#include "object/Object.h"
+#include "general/event.h"
+#include "general/scene.h"
 
 void Camera::ResetCamera() {
 	this->center_point = { window_x / 2, window_y / 2 };
@@ -86,45 +81,15 @@ void Scene::Tick(const int& delta) {
 	for (Object* obj : GetObjects()) {
 		obj->Tick(delta);
 	}
-	switch (this->current_scene)
-	{
-	case SceneType::Menu:
-		this->menu_camera.Update();
-		break;
-	case SceneType::Game:
-		this->game_camera.Update();
-		break;
-	default:
-		break;
-	}
+	this->scene_cam_list[(int)current_scene].Update();
 }
 
 Camera& Scene::GetCamera() {
-	switch (this->current_scene)
-	{
-	case SceneType::Menu:
-		return this->menu_camera;
-		break;
-	case SceneType::Game:
-		return this->game_camera;
-		break;
-	default:
-		break;
-	}
+	return this->scene_cam_list[(int)current_scene];
 }
 
 InputEvent& Scene::GetInputEvent() {
-	switch (this->current_scene)
-	{
-	case SceneType::Menu:
-		return this->menu_inputevent;
-		break;
-	case SceneType::Game:
-		return this->game_inputevent;
-		break;
-	default:
-		break;
-	}
+	return this->scene_inputevent_list[(int)current_scene];
 }
 
 void Scene::Render() {
@@ -138,18 +103,7 @@ void Scene::SetCurrentScene(const SceneType& type) {
 }
 
 const std::vector<Object*>& Scene::GetObjects() const {
-	switch (current_scene)
-	{
-	case SceneType::Menu:
-		return menu_objects;
-		break;
-	case SceneType::Game:
-		return game_objects;
-		break;
-	default:
-		DebugBreak();
-		break;
-	}
+	return this->scene_obj_list[(int)current_scene];
 }
 
 void Scene::AddObject(Object* obj) {
@@ -175,16 +129,5 @@ void Scene::ClearObjects() {
 }
 
 std::vector<Object*>& Scene::GetCurrentObjectList() {
-	switch (current_scene)
-	{
-	case SceneType::Menu:
-		return menu_objects;
-		break;
-	case SceneType::Game:
-		return game_objects;
-		break;
-	default:
-		DebugBreak();
-		break;
-	}
+	return this->scene_obj_list[(int)current_scene];
 }

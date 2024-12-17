@@ -1,11 +1,16 @@
 ﻿#pragma once
 
+class Arrow;
+
 class Player : virtual public Object
 {
 public:
-	Player() = delete;
-
-	Player(Scene& scene);
+	enum class Status
+	{
+		Attached = 0, Flying
+	};
+	
+	Player();
 
 	void Render() override;
 
@@ -13,7 +18,9 @@ public:
 
 	void InputHandle(const ExMessage& msg) override;
 
-	Pos GetCenter();
+	void Launch();
+
+	void Attach();
 
 	~Player();
 private:
@@ -29,6 +36,10 @@ private:
 	const int cooldown = 1000;
 	int counter;
 	Pos mouse_pos;
+
+	Status status;
+	Arrow* arrow;
+	int R_angle;
 
 	bool lock_camera;
 };

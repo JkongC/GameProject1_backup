@@ -1,6 +1,5 @@
-﻿#include <easyx.h>
-#include <chrono>
-#include "util.h"
+﻿#include "stdlibs.h"
+#include "general/util.h"
 
 void ScalingByPixel(IMAGE** dst, IMAGE* src, int frame_num, const int& scale) {
 	IMAGE temp = *src;
