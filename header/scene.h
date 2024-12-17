@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 class Object;
 class InputEvent;
@@ -38,7 +38,7 @@ class Scene {
 public:
 	enum class SceneType
 	{
-		Menu, Game
+		MainMenu, Menu, Game
 	};
 
 	void Tick(const int& delta);
