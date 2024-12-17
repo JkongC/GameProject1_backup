@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+class Object;
+
 //处理输入按键
 class InputEvent 
 {

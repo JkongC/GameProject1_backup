@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 class Object;
+class InputEvent;
 
 class Camera {
 public:
@@ -44,6 +45,8 @@ public:
 
 	Camera& GetCamera();
 
+	InputEvent& GetInputEvent();
+
 	void Render();
 	
 	void SetCurrentScene(const SceneType& type);
@@ -56,7 +59,7 @@ public:
 	
 	void ClearObjects();
 
-	Scene() : current_scene(SceneType::Menu), menu_camera(), game_camera() {}
+	Scene() : current_scene(SceneType::Menu), menu_camera(), game_camera(), menu_inputevent(), game_inputevent() {}
 
 	~Scene() = default;
 
@@ -67,6 +70,8 @@ private:
 	std::vector<Object*> game_objects;
 	Camera menu_camera;
 	Camera game_camera;
+	InputEvent menu_inputevent;
+	InputEvent game_inputevent;
 
 	std::vector<Object*>& GetCurrentObjectList();
 };

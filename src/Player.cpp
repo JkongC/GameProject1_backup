@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "util.h"
 #include "object.h"
+#include "event.h"
 #include "scene.h"
 #include "Player.h"
 
@@ -21,6 +22,8 @@ Player::Player(Scene& scene)
 	this->speed = { 0, 0 };
 	this->acceleration = { 0, 0 };
 	this->scene_belong = &scene;
+
+	scene.AddObject(this);
 }
 
 void Player::Render() {

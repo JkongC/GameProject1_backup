@@ -12,9 +12,9 @@
 #include "util.h"
 #include "Animation.h"
 #include "Object.h"
+#include "event.h"
 #include "scene.h"
 #include "Player.h"
-#include "event.h"
 #include "resource.h"
 
 //在这里声明要用到的图片，下面只是例子
@@ -49,10 +49,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	bool running = true;
 
 	Scene scene;  //场景
-	InputEvent input;  //输入事件，暂时只处理空格
 
 	Player p1(scene);  //玩家
-	input.AddConcern(&p1);  //让玩家关注输入事件
+	scene.GetInputEvent().AddConcern(&p1);  //让玩家关注输入事件
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
@@ -66,7 +65,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		while (peekmessage(&msg)) 
 		{
 			if (msg.vkcode == VK_SPACE || msg.message == WM_MOUSEMOVE) {
-				input.Emit(msg);  //让关注输入事件的对象进行处理
+				scene.GetInputEvent().Emit(msg);  //让关注输入事件的对象进行处理
 			}
 			else if (msg.vkcode == VK_ESCAPE) {
 				running = false;
@@ -77,7 +76,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
 		putimage(background.x, background.y, &game_background);
-		p1.Render();
+		scene.Render();
 
 		FlushBatchDraw();
 		

@@ -7,6 +7,7 @@
 #include <cmath>
 #include "util.h"
 #include "Object.h"
+#include "event.h"
 #include "scene.h"
 
 void Camera::ResetCamera() {
@@ -106,6 +107,20 @@ Camera& Scene::GetCamera() {
 		break;
 	case SceneType::Game:
 		return this->game_camera;
+		break;
+	default:
+		break;
+	}
+}
+
+InputEvent& Scene::GetInputEvent() {
+	switch (this->current_scene)
+	{
+	case SceneType::Menu:
+		return this->menu_inputevent;
+		break;
+	case SceneType::Game:
+		return this->game_inputevent;
 		break;
 	default:
 		break;
