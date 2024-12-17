@@ -90,7 +90,6 @@ private:
     Status status = Status::Idle;
 
 private:
-    // 检测鼠标点击
     bool CheckCursorHit(int x, int y)
     {
         return x >= region.left && x <= region.right && y >= region.top && y <= region.bottom;
