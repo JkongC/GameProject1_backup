@@ -69,6 +69,13 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
 	scene.AddObject(settingsBtn.get());
 
+	//创建返回按钮（设置）
+	RECT backRect = { 100,400, 300, 450 };
+	std::unique_ptr<BackButton> BackBtn = std::make_unique<BackButton>
+		(backRect, _T("BACK_idle.png"), _T("BACK_hovered.png"), _T("BACK_pushed.png"));
+	scene.AddObject(BackBtn.get());
+
+
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
 	timer.Start();  //开始计时
