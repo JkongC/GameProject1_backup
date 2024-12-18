@@ -19,7 +19,7 @@ struct Pos
 	LONG y = 0;
 
 	inline double GetDistanceFrom(const Pos& another) {
-		return sqrt((this->x - another.x) * (this->x - another.x) + (this->y - another.y) * (this->x - another.x));
+		return sqrt((this->x - another.x) * (this->x - another.x) + (this->y - another.y) * (this->y - another.y));
 	}
 	
 	Pos operator+(const Pos& another) {

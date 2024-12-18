@@ -22,7 +22,9 @@ public:
 
 	void SetAngle(const double& angle);
 
-	virtual void Transform() {};
+	virtual void Transform();
+
+	virtual void Untransform();
 
 	int width;
 	int height;

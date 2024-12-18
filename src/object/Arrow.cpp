@@ -10,15 +10,23 @@
 Arrow::Arrow()
 	: clockwise(true), angle_start(0), angle_end(0)
 {
+	this->img = new IMAGE();
 	loadimage(this->img, _T("PNG"), MAKEINTRESOURCE(ARROW), 106, 124, false);
 	this->width = 106;
 	this->height = 124;
 }
 
+Arrow::~Arrow()
+{
+	delete this->img;
+}
+
 void Arrow::Render() {
 	if (!this->show) return;
 
-	putimage_alpha(this->img, this->pos.x, this->pos.y, 0, 0, this->width, this->height);
+	Transform();
+	putimage_alpha(this->img, pos.x, pos.y, 0, 0, width, height);
+	Untransform();
 }
 
 void Arrow::Tick(const int& delta) {
@@ -28,14 +36,14 @@ void Arrow::Tick(const int& delta) {
 	if (this->clockwise) {
 		angle -= this->speed * delta / 1000;
 		if (angle < angle_start || angle > angle_end) {
-			angle = angle_end;
+			angle = angle_start;
 			clockwise = false;
 		}
 	}
 	else {
 		angle += this->speed * delta / 1000;
 		if (angle > angle_end || angle < angle_start) {
-			angle = angle_start;
+			angle = angle_end;
 			clockwise = true;
 		}
 	}
@@ -43,29 +51,4 @@ void Arrow::Tick(const int& delta) {
 
 Pos Arrow::GetCenter() {
 	return { this->pos.x + 3, this->pos.y + 62 };
-}
-
-void Arrow::Transform() {
-	Pos center = GetCenter();
-	
-	XFORM transform_scale;
-	transform_scale.eM11 = this->scale;
-	transform_scale.eM22 = this->scale;
-	transform_scale.eM12 = 0;
-	transform_scale.eM21 = 0;
-	transform_scale.eDx = center.x - center.x * this->scale;
-	transform_scale.eDy = center.y - center.y * this->scale;
-
-	XFORM transform_angle;
-	transform_angle.eM11 = cos(this->angle);
-	transform_angle.eM21 = -sin(this->angle);
-	transform_angle.eM12 = sin(this->angle);
-	transform_angle.eM22 = cos(this->angle);
-	transform_angle.eDx = 0;
-	transform_angle.eDy = 0;
-
-	XFORM result;
-	CombineTransform(&result, &transform_scale, &transform_angle);
-
-	SetWorldTransform(GetImageHDC(this->img), &result);
 }

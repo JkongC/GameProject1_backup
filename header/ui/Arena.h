@@ -9,7 +9,7 @@ public:
 		return arena;
 	}  //µ¥ÀıÄ£Ê½
 
-	const int radius = 300;
+	const int radius = 250;
 	const Pos center = { window_x / 2, window_y / 2 };
 private:
 	Arena() = default;

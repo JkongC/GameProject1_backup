@@ -7,15 +7,13 @@ class Arrow : public Object
 	friend class Player;
 private:
 	Arrow();
-	~Arrow() = default;
+	~Arrow();
 
 	void Render();
 
 	void Tick(const int& delta);
 
-	Pos GetCenter();
-
-	void Transform() override;
+	Pos GetCenter() override;
 
 private:
 	IMAGE* img;
@@ -24,5 +22,5 @@ private:
 	double angle_start;
 	double angle_end;
 
-	const double speed = 3.14159 / 180;
+	const double speed = 3.14159 / 180 * 80;
 };
