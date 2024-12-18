@@ -16,6 +16,7 @@ IMAGE player_right_img;
 std::unique_ptr<Animation> player_right;  //使用智能指针的话，不用手动释放资源
 
 IMAGE game_background;
+IMAGE main_menu_background;
 
 inline int LoadResources() 
 {
@@ -24,6 +25,7 @@ inline int LoadResources()
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 	return 0;
 }
 
