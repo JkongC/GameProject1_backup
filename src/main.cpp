@@ -16,6 +16,7 @@ IMAGE player_right_img;
 std::unique_ptr<Animation> player_right;  //使用智能指针的话，不用手动释放资源
 
 IMAGE game_background;
+IMAGE main_menu_background;
 
 inline int LoadResources() 
 {
@@ -24,6 +25,7 @@ inline int LoadResources()
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 	return 0;
 }
 
@@ -66,6 +68,13 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	std::unique_ptr<SettingButton> settingsBtn = std::make_unique<SettingButton>
 		(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
 	scene.AddObject(settingsBtn.get());
+
+	//创建返回按钮（设置）
+	RECT backRect = { 100,400, 300, 450 };
+	std::unique_ptr<BackButton> BackBtn = std::make_unique<BackButton>
+		(backRect, _T("BACK_idle.png"), _T("BACK_hovered.png"), _T("BACK_pushed.png"));
+	scene.AddObject(BackBtn.get());
+
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
