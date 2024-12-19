@@ -9,6 +9,7 @@
 #include "ui/Button.h"
 #include "general/globals.h"
 #include "resource.h"
+#include "general/SD_Music.h"
 
 const int BUTTON_WIDTH = 192;
 const int BUTTON_HEIGHT = 75;
@@ -22,9 +23,10 @@ StartGameButton::~StartGameButton() = default;
 
 void StartGameButton::OnClick()
 {
+    SD_music_button();
     Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
-
-    mciSendString(_T("Play bgm repeat form 0"), NULL, 0, NULL);
+    SD_music_first_level();
+    //mciSendString(_T("Play bgm repeat form 0"), NULL, 0, NULL);
 }
 
 
@@ -37,6 +39,8 @@ QuitGameButton::~QuitGameButton() = default;
 
 void QuitGameButton::OnClick()
 {
+    SD_music_button();
+    SD_music_close();
     running = false;
 }
 
@@ -50,6 +54,7 @@ SettingButton::~SettingButton() = default;
 
 void SettingButton::OnClick()
 {
+    SD_music_button();
     Scene::GetScene().SetCurrentScene(Scene::SceneType::Settings);
 
 }
@@ -64,7 +69,9 @@ BackButton::~BackButton() = default;
 
 void BackButton::OnClick()
 {
+    SD_music_button();
     Scene::GetScene().SetCurrentScene(Scene::SceneType::MainMenu);
+    SD_music_bgm();
 }
 
 //重新开始游戏按钮
@@ -76,6 +83,8 @@ RestartGameButton::~RestartGameButton() = default;
 
 void RestartGameButton::Onclick()
 {
+    SD_music_button();
     Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
+    SD_music_first_level();
 }
 

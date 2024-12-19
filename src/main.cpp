@@ -51,7 +51,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	//场景1玩家
 	Player p1 = Player();
 	scene.GetInputEvent().AddConcern(&p1);  //让玩家关注输入事件
-	
+
+	//初始化音乐
+	SD_Music_import();
+
 	//初始化UI按钮
 	//创建开始游戏按钮
 	RECT startGameRect = { 100, 100, 300, 150 };
@@ -91,7 +94,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		}
 
 		cleardevice();
-		SD_Music_import();
 		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
 		putimage(background.x, background.y, &game_background);
 		scene.Render();
