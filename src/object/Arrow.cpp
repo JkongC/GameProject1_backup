@@ -14,6 +14,7 @@ Arrow::Arrow()
 	loadimage(this->img, _T("PNG"), MAKEINTRESOURCE(ARROW), 106, 124, false);
 	this->width = 106;
 	this->height = 124;
+	this->angle = 0;
 }
 
 Arrow::~Arrow()
@@ -32,7 +33,7 @@ void Arrow::Render() {
 void Arrow::Tick(const int& delta) {
 	if (angle_start > angle_end)
 		angle_start -= 3.14159 * 2;
-
+	
 	if (this->clockwise) {
 		angle -= this->speed * delta / 1000;
 		if (angle < angle_start || angle > angle_end) {

@@ -93,6 +93,8 @@ InputEvent& Scene::GetInputEvent() {
 }
 
 void Scene::Render() {
+	putimage_alpha(this->scene_background_list[(int)current_scene],
+		0, 0, 0, 0, window_x, window_y);
 	for (Object* obj : GetObjects()) {
 		obj->Render();
 	}
@@ -100,6 +102,10 @@ void Scene::Render() {
 
 void Scene::SetCurrentScene(const SceneType& type) {
 	current_scene = type;
+}
+
+void Scene::SetSceneBackground(const SceneType& type, IMAGE* background) {
+	this->scene_background_list[(int)type] = background;
 }
 
 const std::vector<Object*>& Scene::GetObjects() const {

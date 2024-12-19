@@ -58,6 +58,8 @@ public:
 	
 	void SetCurrentScene(const SceneType& type);
 
+	void SetSceneBackground(const SceneType& type, IMAGE* background);
+
 	const std::vector<Object*>& GetObjects() const;
 
 	void AddObject(Object* obj);
@@ -67,7 +69,7 @@ public:
 	void ClearObjects();
 
 private:
-	Scene() : current_scene(SceneType::MainMenu) {}
+	Scene() : current_scene(SceneType::Game) {}
 
 	Scene(const Scene&) = delete;
 
@@ -80,6 +82,7 @@ private:
 	std::array<std::vector<Object*>, (int)SceneType::Void> scene_obj_list;
 	std::array<Camera, (int)SceneType::Void> scene_cam_list;
 	std::array<InputEvent, (int)SceneType::Void> scene_inputevent_list;
+	std::array<IMAGE*, (int)SceneType::Void> scene_background_list;
 
 	std::vector<Object*>& GetCurrentObjectList();
 };

@@ -22,5 +22,5 @@ private:
 	double angle_start;
 	double angle_end;
 
-	const double speed = 3.14159 / 180 * 80;
+	const double speed = 3.14159 / 180 * 95;
 };

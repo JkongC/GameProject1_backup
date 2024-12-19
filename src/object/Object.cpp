@@ -18,14 +18,14 @@ Pos Object::GetCenter() {
 
 void Object::Transform() {
 	Pos center = GetCenter();
-
+	
 	XFORM transform_angle;
 	transform_angle.eM11 = cos(this->angle);
-	transform_angle.eM21 = -sin(this->angle);
-	transform_angle.eM12 = sin(this->angle);
+	transform_angle.eM21 = sin(this->angle);
+	transform_angle.eM12 = -sin(this->angle);
 	transform_angle.eM22 = cos(this->angle);
-	transform_angle.eDx = -center.x * cos(this->angle) + center.y * sin(this->angle) + center.x;
-	transform_angle.eDy = -center.x * sin(this->angle) - center.y * cos(this->angle) + center.y;
+	transform_angle.eDx = -center.x * cos(this->angle) - center.y * sin(this->angle) + center.x;
+	transform_angle.eDy = center.x * sin(this->angle) - center.y * cos(this->angle) + center.y;
 
 	XFORM transform_scale;
 	transform_scale.eM11 = this->scale;

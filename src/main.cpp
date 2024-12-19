@@ -9,6 +9,7 @@
 #include "general/scene.h"
 #include "object/Player.h"
 #include "ui/Button.h"
+#include "ui/Arena.h"
 #include "resource.h"
 
 //在这里声明要用到的图片，下面只是例子
@@ -25,7 +26,9 @@ inline int LoadResources()
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+	Scene::GetScene().SetSceneBackground(Scene::SceneType::Game, &game_background);
 	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+	Scene::GetScene().SetSceneBackground(Scene::SceneType::MainMenu, &main_menu_background);
 	return 0;
 }
 
@@ -98,7 +101,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		cleardevice();
 
 		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
-		putimage(background.x, background.y, &game_background);
 		scene.Render();
 
 		FlushBatchDraw();

@@ -11,6 +11,8 @@
 #define world_x 3000
 #define world_y 3000
 
+constexpr auto PI = 3.14159;
+
 #include <cmath>
 
 struct Pos

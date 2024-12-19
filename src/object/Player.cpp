@@ -1,4 +1,6 @@
-﻿#include "stdlibs.h"
+﻿#include <stdlib.h>
+
+#include "stdlibs.h"
 #include "object/Animation.h"
 #include "general/util.h"
 #include "object/object.h"
@@ -13,7 +15,7 @@ extern std::unique_ptr<Animation> player_right;
 Player::Player()
 	:current_ani_set(0), health(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
 {
-	this->pos = { window_x / 2 - Arena::GetArena().radius, window_y / 2 - 50};
+	this->pos = { window_x / 2 - Arena::GetArena().long_axis, window_y / 2 - 50};
 	ani_list.push_back(player_right.get());
 
 	this->width = ani_list[0]->GetWidth();
@@ -26,6 +28,8 @@ Player::Player()
 	Scene::GetScene().AddObject(this);
 
 	Attach();
+
+	srand(time(NULL));
 }
 
 void Player::Render() {
@@ -64,8 +68,8 @@ void Player::Tick(const int& delta) {
 	case Status::Flying:
 	{
 		Pos center = this->GetCenter();
-		Pos after = { center.x + speed.x, center.y + speed.y };
-		if (after.GetDistanceFrom(Arena::GetArena().center) > Arena::GetArena().radius + 2) {
+		Pos after = { center.x + this->speed.x, center.y + this->speed.y };
+		if (Arena::GetArena().CheckIfOut(after)) {
 			Attach();
 		}
 		else {
@@ -102,10 +106,10 @@ void Player::InputHandle(const ExMessage& msg) {
 void Player::Launch() {
 	this->status = Status::Flying;
 
-	Vec2d direction = {cos(this->arrow->angle), sin(this->arrow->angle)};
-	direction.Normalize(5);
+	Vec2d direction = {cos(this->arrow->angle), -sin(this->arrow->angle)};
+	direction.Normalize(7);
 
-	this->speed += direction;
+ 	this->speed += direction;
 }
 
 void Player::Attach() {
@@ -114,16 +118,52 @@ void Player::Attach() {
 	speed_norm.Normalize(3);
 
 	Pos center = this->GetCenter();
-	while (speed.x != 0 && speed.y != 0 && center.GetDistanceFrom(Arena::GetArena().center) < Arena::GetArena().radius - 5) {
+	while (speed.x != 0 && speed.y != 0 && !Arena::GetArena().CheckIfOut(this->GetCenter())) {
 		pos.x += speed_norm.x;
 		pos.y += speed_norm.y;
+	}  //位置修正
+
+	double arena_long = Arena::GetArena().long_axis;  //场地椭圆长轴
+	double arena_short = Arena::GetArena().short_axis;  //场地椭圆短轴
+	
+	Pos delta = this->GetCenter() - Arena::GetArena().center;  //玩家位置到圆心的方向向量
+	double k1 = (double)delta.y / (double)delta.x;  //方向向量所在直线的斜率
+	double temp_angle;
+	if (k1) {
+		double k2 = -(arena_short * arena_short / (arena_long * arena_long)) / k1;  //切线的斜率
+
+		temp_angle = atan(k2) + PI / 2;  //变为切线的中垂线的倾斜角
+		if (delta.x * cos(temp_angle) > 0 && delta.y * sin(temp_angle) > 0) 
+			temp_angle += PI;  //让角向着椭圆内方向
+
+		temp_angle = -temp_angle;  //这一步是因为窗口坐标系y轴反转
+	}
+	else {
+		if (delta.x > 0) {
+			temp_angle = PI;
+		}
+		else {
+			temp_angle = 0;
+		}
 	}
 
-	arrow->angle_end = arrow->angle + 3.14159 + 3.14159 / 180 * 60;
-	arrow->angle_start = arrow->angle + 3.14159 - 3.14159 / 180 * 60;
+	arrow->angle = temp_angle;
+	arrow->angle_end = arrow->angle + PI / 180 * 70;  //设置指针转动范围
+	arrow->angle_start = arrow->angle - PI / 180 * 70;
 	Pos arrow_offset = { 3, 62 };
 	arrow->pos = this->GetCenter() - arrow_offset;
-	arrow->Tick(0);
+
+	switch (rand() % 2) //随机让指针从顺时针或逆时针开始转动
+	{
+	case 0:
+		arrow->clockwise = true;
+		break;
+	case 1:
+		arrow->clockwise = false;
+		break;
+	default:
+		break;
+	}
 
 	this->speed = { 0,0 };
 }
