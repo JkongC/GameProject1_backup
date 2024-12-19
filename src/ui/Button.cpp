@@ -74,10 +74,8 @@ RestartGameButton::RestartGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR p
 
 RestartGameButton::~RestartGameButton() = default;
 
-void StartGameButton::OnClick()
+void RestartGameButton::Onclick()
 {
     Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
-
-    mciSendString(_T("Play bgm repeat form 0"), NULL, 0, NULL);
 }
 
