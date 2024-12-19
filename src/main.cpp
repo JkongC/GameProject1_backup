@@ -25,7 +25,7 @@ inline int LoadResources()
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
-	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(MAINMENU_BG1), window_x, window_y, true);
 	return 0;
 }
 
