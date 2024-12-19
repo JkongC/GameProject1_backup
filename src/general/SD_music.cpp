@@ -6,7 +6,7 @@
 //函数
 void SD_Music_import(void)
 {
-	mciSendString(L"open bgm.wav alias BGM", NULL, 0, NULL);
+	mciSendString(L"open bgm.wav alias BGM", NULL, 0, NULL);//打开音频文件
 	mciSendString(L"open put_down.ogg alias PUT_DOWN", NULL, 0, NULL);
 	mciSendString(L"open failure_music.wav alias FAILURE", NULL, 0, NULL);
 	mciSendString(L"open move.wav alias MOVE", NULL, 0, NULL);
@@ -14,13 +14,13 @@ void SD_Music_import(void)
 	mciSendString(L"open coin.wav alias COIN", NULL, 0, NULL);
 	mciSendString(L"open first_level.wav alias F_BGM", NULL, 0, NULL);
 	mciSendString(L"setaudio BGM volume to 700", NULL, 0, NULL);//设置音量为70%
-	mciSendString(L"play BGM repeat", NULL, 0, NULL);
+	mciSendString(L"play BGM repeat", NULL, 0, NULL);	//播放对应音频
 }
 
-void SD_music_button(void)
+void SD_music_button(void)//
 {
-	mciSendString(L"close PUT_DOWN", NULL, 0, NULL);
-	mciSendString(L"open put_down.ogg alias PUT_DOWN", NULL, 0, NULL);
+	mciSendString(L"close PUT_DOWN", NULL, 0, NULL);//关闭播放过的该音效
+	mciSendString(L"open put_down.ogg alias PUT_DOWN", NULL, 0, NULL);//重新打开,相当于重置开始播放时间为零
 	mciSendString(L"play PUT_DOWN", NULL, 0, NULL);
 }
 
@@ -31,7 +31,7 @@ void SD_music_failure(void)
 	mciSendString(L"play FAILURE", NULL, 0, NULL);
 }
 
-void SD_music_first_level(void)
+void SD_music_first_level(void)//切换背景音乐为第一关
 {
 	mciSendString(L"close F_BGM", NULL, 0, NULL);
 	mciSendString(L"close BGM", NULL, 0, NULL);
@@ -39,7 +39,7 @@ void SD_music_first_level(void)
 	mciSendString(L"play F_BGM repeat", NULL, 0, NULL);
 }
 
-void SD_music_bgm(void)
+void SD_music_bgm(void)//切换背景音乐为主界面音效
 {
 	mciSendString(L"close F_BGM", NULL, 0, NULL);
 	mciSendString(L"close BGM", NULL, 0, NULL);

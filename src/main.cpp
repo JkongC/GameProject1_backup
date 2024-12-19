@@ -11,6 +11,8 @@
 #include "ui/Button.h"
 #include "ui/Arena.h"
 #include "resource.h"
+#include "general/SD_Music.h"
+#include "ui/score_display.h"
 
 //在这里声明要用到的图片，下面只是例子
 IMAGE player_right_img;
@@ -26,9 +28,7 @@ inline int LoadResources()
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
-	Scene::GetScene().SetSceneBackground(Scene::SceneType::Game, &game_background);
 	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
-	Scene::GetScene().SetSceneBackground(Scene::SceneType::MainMenu, &main_menu_background);
 	return 0;
 }
 
@@ -52,7 +52,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	//场景1玩家
 	Player p1 = Player();
 	scene.GetInputEvent().AddConcern(&p1);  //让玩家关注输入事件
-	
+
+	//初始化音乐
+	SD_Music_import();
+
 	//初始化UI按钮
 	//创建开始游戏按钮
 	RECT startGameRect = { 100, 100, 300, 150 };
@@ -71,13 +74,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	std::unique_ptr<SettingButton> settingsBtn = std::make_unique<SettingButton>
 		(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
 	scene.AddObject(settingsBtn.get());
-
-	//创建返回按钮（设置）
-	RECT backRect = { 100,400, 300, 450 };
-	std::unique_ptr<BackButton> BackBtn = std::make_unique<BackButton>
-		(backRect, _T("BACK_idle.png"), _T("BACK_hovered.png"), _T("BACK_pushed.png"));
-	scene.AddObject(BackBtn.get());
-
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
@@ -99,9 +95,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		}
 
 		cleardevice();
-
 		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
 		scene.Render();
+		DisPlayScore(currentScore, window_x ,0);
 
 		FlushBatchDraw();
 		

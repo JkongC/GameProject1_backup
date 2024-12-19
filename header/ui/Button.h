@@ -79,6 +79,17 @@ private:
 
 };
 
+class RestartGameButton : public Button
+{
+public:
+    RestartGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_img_hovered, LPCTSTR path_img_pushed);
+    ~RestartGameButton();
+
+private:
+    void Onclick();
+};
+
+
 class StartGameButton : public Button
 {
 public:
