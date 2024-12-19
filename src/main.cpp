@@ -10,6 +10,7 @@
 #include "object/Player.h"
 #include "ui/Button.h"
 #include "resource.h"
+#include "general/SD_Music.h"
 
 //在这里声明要用到的图片，下面只是例子
 IMAGE player_right_img;
@@ -96,7 +97,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		}
 
 		cleardevice();
-
+		SD_Music_import();
 		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
 		putimage(background.x, background.y, &game_background);
 		scene.Render();
