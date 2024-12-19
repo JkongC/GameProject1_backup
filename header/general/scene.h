@@ -40,7 +40,7 @@ class Scene {
 public:
 	enum class SceneType
 	{
-		MainMenu = 0, Game, Settings, Void
+		MainMenu = 0, Game, Settings, DieMenu, Void
 	};   //Void仅作占位符，不要切换到它，始终保证它在末尾
 
 	static Scene& GetScene() {

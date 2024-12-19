@@ -14,7 +14,7 @@ void SD_Music_import(void)
 	mciSendString(L"open coin.wav alias COIN", NULL, 0, NULL);
 	mciSendString(L"open first_level.wav alias F_BGM", NULL, 0, NULL);
 	mciSendString(L"setaudio BGM volume to 700", NULL, 0, NULL);//…Ë÷√“Ù¡øŒ™70%
-	mciSendString(L"play BGM repeat", NULL, 0, NULL);
+	mciSendString(L"play BGM repeat", NULL, 0, NULL);	
 }
 
 void SD_music_button(void)

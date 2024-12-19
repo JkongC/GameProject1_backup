@@ -66,3 +66,18 @@ void BackButton::OnClick()
 {
     Scene::GetScene().SetCurrentScene(Scene::SceneType::MainMenu);
 }
+
+//重新开始游戏按钮
+RestartGameButton::RestartGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_img_hovered, LPCTSTR path_img_pushed)
+    : Button(rect, path_img_idle, path_img_hovered, path_img_pushed){
+}
+
+RestartGameButton::~RestartGameButton() = default;
+
+void StartGameButton::OnClick()
+{
+    Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
+
+    mciSendString(_T("Play bgm repeat form 0"), NULL, 0, NULL);
+}
+
