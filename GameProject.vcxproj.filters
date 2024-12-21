@@ -121,6 +121,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\score_display.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\general\event.cpp">
@@ -158,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="src\stdlibs.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\score.cpp">
+      <Filter>源文件\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,6 +28,7 @@ inline int LoadResources()
 	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+	Scene::GetScene().SetSceneBackground(Scene::SceneType::Game, &game_background);
 	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 	return 0;
 }
@@ -97,7 +98,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		cleardevice();
 		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
 		scene.Render();
-		DisPlayScore(currentScore, window_x ,0);
 
 		FlushBatchDraw();
 		

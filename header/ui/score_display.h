@@ -1,3 +1,3 @@
 #pragma once
 
-void DisPlayScore(int score, int x, int y);
+void DisPlayScore(const int& score, int x, int y);
