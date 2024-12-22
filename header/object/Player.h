@@ -22,6 +22,10 @@ public:
 
 	void Attach();
 
+	inline int GetHealth() { return this->health; }
+
+	inline void SetHealth(const int& health) { this->health = health; }
+
 	~Player();
 private:
 	int health;

@@ -17,6 +17,8 @@ void Animation::Render(int x, int y) {
 }
 
 void Animation::Tick(const int& delta) {
+	if (frame_amount == 1) return;
+	
 	this->counter += delta;
 	if (counter >= interval) {
 		counter = 0;

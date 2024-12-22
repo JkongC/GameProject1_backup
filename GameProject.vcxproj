@@ -139,6 +139,11 @@
   <ItemGroup>
     <Image Include="resources\crystal.png" />
     <Image Include="resources\game_bg1.png" />
+    <Image Include="resources\image\obstacle.png" />
+    <Image Include="resources\image\player.png" />
+    <Image Include="resources\image\score_10.png" />
+    <Image Include="resources\image\score_20.png" />
+    <Image Include="resources\image\score_5.png" />
     <Image Include="resources\UI\arrow.png" />
     <Image Include="resources\UI\BACK_hoverd.png" />
     <Image Include="resources\UI\BACK_pushed.png" />
@@ -161,6 +166,7 @@
     <ClInclude Include="header\object\Animation.h" />
     <ClInclude Include="header\object\Arrow.h" />
     <ClInclude Include="header\object\Object.h" />
+    <ClInclude Include="header\object\Obstacle.h" />
     <ClInclude Include="header\object\Player.h" />
     <ClInclude Include="header\stdlibs.h" />
     <ClInclude Include="header\ui\Arena.h" />
@@ -179,6 +185,7 @@
     <ClCompile Include="src\object\Animation.cpp" />
     <ClCompile Include="src\object\Arrow.cpp" />
     <ClCompile Include="src\object\Object.cpp" />
+    <ClCompile Include="src\object\Obstacle.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
     <ClCompile Include="src\stdlibs.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

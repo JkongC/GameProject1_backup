@@ -3,11 +3,12 @@
 #include <array>
 
 class Object;
+class Player;
 class InputEvent;
 
 class Camera {
 public:
-	Camera() : center_point({window_x / 2, window_y / 2}), scale(1), angle(0) {}
+	Camera();
 
 	void ResetCamera();
 
@@ -30,10 +31,13 @@ public:
 	const double& GetAngle() const;
 
 	void SetAngle(const double& angle);
+
+	XFORM& GetBaseTransform();
 private:
 	Pos center_point;
 	double scale;
 	double angle;
+	XFORM base_transform;
 };
 
 class Scene {
@@ -64,12 +68,16 @@ public:
 
 	void AddObject(Object* obj);
 
+	void SetPlayer(Player* player);
+
+	inline Player* GetPlayer() { return this->player; }
+
 	void RemoveObject(Object* obj);
 	
 	void ClearObjects();
 
 private:
-	Scene() : current_scene(SceneType::Game) {}
+	Scene() : current_scene(SceneType::Game), scene_obj_list(), scene_cam_list(), scene_inputevent_list(), scene_background_list(), player(nullptr) {}
 
 	Scene(const Scene&) = delete;
 
@@ -83,6 +91,7 @@ private:
 	std::array<Camera, (int)SceneType::Void> scene_cam_list;
 	std::array<InputEvent, (int)SceneType::Void> scene_inputevent_list;
 	std::array<IMAGE*, (int)SceneType::Void> scene_background_list;
+	Player* player;
 
 	std::vector<Object*>& GetCurrentObjectList();
 };

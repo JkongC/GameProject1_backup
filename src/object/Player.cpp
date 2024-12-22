@@ -9,11 +9,12 @@
 #include "object/Player.h"
 #include "object/Arrow.h"
 #include "ui/Arena.h"
+#include "general/globals.h"
 
 extern std::unique_ptr<Animation> player_right;
 
 Player::Player()
-	:current_ani_set(0), health(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
+	:current_ani_set(0), health(5), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
 {
 	this->pos = { window_x / 2 - Arena::GetArena().long_axis, window_y / 2 - 50};
 	ani_list.push_back(player_right.get());
@@ -26,6 +27,7 @@ Player::Player()
 	this->arrow = new Arrow();
 
 	Scene::GetScene().AddObject(this);
+	Scene::GetScene().SetPlayer(this);
 
 	Attach();
 
@@ -35,7 +37,9 @@ Player::Player()
 void Player::Render() {
 	if (!this->show) return;
 	Pos relative = Scene::GetScene().GetCamera().GetRelativePos(this->pos);
+	Transform();
 	ani_list[current_ani_set]->Render(relative.x, relative.y);
+	Untransform();
 
 	switch (this->status)
 	{
@@ -50,8 +54,16 @@ void Player::Render() {
 }
 
 void Player::Tick(const int& delta) {
+	if (health <= 0) {
+		running = false;
+		return;
+	}
+	
 	ani_list[current_ani_set]->Tick(delta);
 	counter += delta;
+	
+	angle += 3.14159 / 180 * delta / 10;
+	if (angle > 2 * 3.14159) angle -= 2 * 3.14159;
 
 	switch (this->status)
 	{

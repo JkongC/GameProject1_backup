@@ -38,17 +38,12 @@ void Object::Transform() {
 	XFORM result;
 	CombineTransform(&result, &transform_angle, &transform_scale);
 
+	XFORM& base = Scene::GetScene().GetCamera().GetBaseTransform();
+	CombineTransform(&result, &base, &result);
+
 	SetWorldTransform(GetImageHDC(), &result);
 }
 
 void Object::Untransform() {
-	XFORM origin;
-	origin.eM11 = 1;
-	origin.eM22 = 1;
-	origin.eM12 = 0;
-	origin.eM21 = 0;
-	origin.eDx = 0;
-	origin.eDy = 0;
-
-	SetWorldTransform(GetImageHDC(), &origin);
+	SetWorldTransform(GetImageHDC(), &Scene::GetScene().GetCamera().GetBaseTransform());
 }

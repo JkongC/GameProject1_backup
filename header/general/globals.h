@@ -1,4 +1,4 @@
 #pragma once
 
-extern bool running = true;
+extern bool running;
 //currentScore is needed

@@ -1,9 +1,22 @@
 ﻿#include "stdlibs.h"
 #include <cmath>
 #include "general/util.h"
+#include "object/Animation.h"
 #include "object/Object.h"
 #include "general/event.h"
+#include "object/Player.h"
 #include "general/scene.h"
+
+Camera::Camera()
+	: center_point({ window_x / 2, window_y / 2 }), scale(1), angle(0)
+{
+	base_transform.eM11 = 1;
+	base_transform.eM22 = 1;
+	base_transform.eM12 = 0;
+	base_transform.eM21 = 0;
+	base_transform.eDx = 0;
+	base_transform.eDy = 0;
+}
 
 void Camera::ResetCamera() {
 	this->center_point = { window_x / 2, window_y / 2 };
@@ -76,6 +89,10 @@ void Camera::SetAngle(const double& angle) {
 	this->angle = angle;
 }
 
+XFORM& Camera::GetBaseTransform() {
+	return this->base_transform;
+}
+
 
 void Scene::Tick(const int& delta) {
 	for (Object* obj : GetObjects()) {
@@ -114,6 +131,11 @@ const std::vector<Object*>& Scene::GetObjects() const {
 
 void Scene::AddObject(Object* obj) {
 	GetCurrentObjectList().push_back(obj);
+}
+
+void Scene::SetPlayer(Player* player) {
+	this->player = player;
+	GetCurrentObjectList().push_back(static_cast<Object*>(player));
 }
 
 void Scene::RemoveObject(Object* obj) {

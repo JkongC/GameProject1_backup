@@ -2,6 +2,7 @@
 
 #include <tchar.h>
 #include <ShellScalingApi.h>
+#include "general/globals.h"
 #include "general/util.h"
 #include "object/Animation.h"
 #include "object/Object.h"
@@ -10,6 +11,7 @@
 #include "object/Player.h"
 #include "ui/Button.h"
 #include "ui/Arena.h"
+#include "object/Obstacle.h"
 #include "resource.h"
 #include "general/SD_Music.h"
 #include "ui/score_display.h"
@@ -21,15 +23,22 @@ std::unique_ptr<Animation> player_right;  //使用智能指针的话，不用手
 IMAGE game_background;
 IMAGE main_menu_background;
 
+IMAGE obstacle;
+
+bool running;
+
 inline int LoadResources() 
 {
-	loadimage(&player_right_img, _T("PNG"), MAKEINTRESOURCE(TEST), 60, 17, false);
+	loadimage(&player_right_img, _T("PNG"), MAKEINTRESOURCE(PLAYER), 76, 76, false);
 	//make_unique的作用是new一个对象然后获取它的unique_ptr
-	player_right = std::make_unique<Animation>(player_right_img, 15, 17, 200, 4, 4);
+	player_right = std::make_unique<Animation>(player_right_img, 76, 76, 0, 1, 1);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 	Scene::GetScene().SetSceneBackground(Scene::SceneType::Game, &game_background);
 	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
+
+	loadimage(&obstacle, _T("PNG"), MAKEINTRESOURCE(OBSTACLE), 90, 90, false);
+
 	return 0;
 }
 
@@ -46,12 +55,14 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	LoadResources();
 	
 	initgraph(window_x, window_y, EX_NOCLOSE);
-	bool running = true;
+	running = true;
 
 	Scene& scene = Scene::GetScene();
 
 	//场景1玩家
 	Player p1 = Player();
+	Obstacle ob1 = Obstacle(0.8 * PI);
+	Obstacle ob2 = Obstacle(0.5 * PI);
 	scene.GetInputEvent().AddConcern(&p1);  //让玩家关注输入事件
 
 	//初始化音乐
@@ -101,9 +112,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 		FlushBatchDraw();
 		
-		auto& time_elapsed = timer.SinceLast();  //计算自从上次调用Start或SinceLast以来，经过的时间
+		const int& time_elapsed = timer.SinceLast();  //计算自从上次调用Start或SinceLast以来，经过的时间
 
-		p1.Tick(time_elapsed);
+		scene.Tick(time_elapsed);
 
 		if (time_elapsed < 1000 / 144) {
 			Sleep(1000 / 144 - time_elapsed);
