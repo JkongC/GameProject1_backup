@@ -95,9 +95,20 @@ XFORM& Camera::GetBaseTransform() {
 
 
 void Scene::Tick(const int& delta) {
-	for (Object* obj : GetObjects()) {
-		obj->Tick(delta);
+	auto& lst = GetCurrentObjectList();
+	for (size_t idx = 0; idx < lst.size(); idx++)
+	{
+		if (lst[idx]->life == 0)
+		{
+			std::swap(lst[idx], lst[lst.size() - 1]);
+			delete lst[lst.size() - 1];
+			lst.pop_back();
+			continue;
+		}
+
+		lst[idx]->Tick(delta);
 	}
+
 	this->scene_cam_list[(int)current_scene].Update();
 }
 
@@ -112,7 +123,8 @@ InputEvent& Scene::GetInputEvent() {
 void Scene::Render() {
 	putimage_alpha(this->scene_background_list[(int)current_scene],
 		0, 0, 0, 0, window_x, window_y);
-	for (Object* obj : GetObjects()) {
+	auto& objs = GetObjects();
+	for (Object* obj : objs) {
 		obj->Render();
 	}
 }

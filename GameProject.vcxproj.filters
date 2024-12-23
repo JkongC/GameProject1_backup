@@ -136,10 +136,10 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\score_display.h">
-      <Filter>头文件\ui</Filter>
-    </ClInclude>
     <ClInclude Include="header\object\Obstacle.h">
+      <Filter>头文件\object</Filter>
+    </ClInclude>
+    <ClInclude Include="header\object\Score.h">
       <Filter>头文件\object</Filter>
     </ClInclude>
   </ItemGroup>
@@ -177,14 +177,14 @@
     <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\stdlibs.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ui\score.cpp">
-      <Filter>源文件\ui</Filter>
-    </ClCompile>
     <ClCompile Include="src\object\Obstacle.cpp">
       <Filter>源文件\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\Score.cpp">
+      <Filter>源文件\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdlibs.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

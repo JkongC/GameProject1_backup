@@ -12,9 +12,9 @@
 #include "ui/Button.h"
 #include "ui/Arena.h"
 #include "object/Obstacle.h"
+#include "object/Score.h"
 #include "resource.h"
 #include "general/SD_Music.h"
-#include "ui/score_display.h"
 
 //在这里声明要用到的图片，下面只是例子
 IMAGE player_right_img;
@@ -24,6 +24,9 @@ IMAGE game_background;
 IMAGE main_menu_background;
 
 IMAGE obstacle;
+IMAGE score_5;
+IMAGE score_10;
+IMAGE score_20;
 
 bool running;
 
@@ -38,6 +41,12 @@ inline int LoadResources()
 	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 
 	loadimage(&obstacle, _T("PNG"), MAKEINTRESOURCE(OBSTACLE), 90, 90, false);
+	loadimage(&score_5, _T("PNG"), MAKEINTRESOURCE(SCORE_5), 56, 56, false);
+	loadimage(&score_10, _T("PNG"), MAKEINTRESOURCE(SCORE_10), 56, 56, false);
+	loadimage(&score_20, _T("PNG"), MAKEINTRESOURCE(SCORE_20), 56, 56, false);
+	Score::img_list[0] = &score_5;
+	Score::img_list[1] = &score_10;
+	Score::img_list[2] = &score_20;
 
 	return 0;
 }
@@ -68,6 +77,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	//初始化音乐
 	SD_Music_import();
 
+	/*
 	//初始化UI按钮
 	//创建开始游戏按钮
 	RECT startGameRect = { 100, 100, 300, 150 };
@@ -86,6 +96,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	std::unique_ptr<SettingButton> settingsBtn = std::make_unique<SettingButton>
 		(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
 	scene.AddObject(settingsBtn.get());
+	*/
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
@@ -115,6 +126,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		const int& time_elapsed = timer.SinceLast();  //计算自从上次调用Start或SinceLast以来，经过的时间
 
 		scene.Tick(time_elapsed);
+		ScoreGenerator::GetGenerator().TryGenerate(time_elapsed);
 
 		if (time_elapsed < 1000 / 144) {
 			Sleep(1000 / 144 - time_elapsed);

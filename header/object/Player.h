@@ -26,9 +26,14 @@ public:
 
 	inline void SetHealth(const int& health) { this->health = health; }
 
+	inline int GetScore() { return this->score; };
+
+	inline void SetScore(const int& score) { this->score = score; };
+
 	~Player();
 private:
 	int health;
+	int score;
 
 	const int walk_speed = 6;
 	const double friction = 0.01;

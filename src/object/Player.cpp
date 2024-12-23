@@ -14,7 +14,7 @@
 extern std::unique_ptr<Animation> player_right;
 
 Player::Player()
-	:current_ani_set(0), health(5), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
+	:current_ani_set(0), health(5), score(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
 {
 	this->pos = { window_x / 2 - Arena::GetArena().long_axis, window_y / 2 - 50};
 	ani_list.push_back(player_right.get());
@@ -25,6 +25,7 @@ Player::Player()
 	this->acceleration = { 0, 0 };
 
 	this->arrow = new Arrow();
+	this->life = -1;
 
 	Scene::GetScene().AddObject(this);
 	Scene::GetScene().SetPlayer(this);
@@ -51,6 +52,18 @@ void Player::Render() {
 	default:
 		break;
 	}
+
+	TCHAR health_bar[10];
+	_stprintf_s(health_bar, _T("玩家生命值：%d"), this->health);
+	setbkmode(TRANSPARENT);
+	settextstyle(50, 20, _T("Microsoft YaHei UI"));
+	outtextxy(0, 0, health_bar);
+
+	TCHAR score_bar[10];
+	_stprintf_s(score_bar, _T("玩家分数：%d"), this->score);
+	setbkmode(TRANSPARENT);
+	settextstyle(50, 20, _T("Microsoft YaHei UI"));
+	outtextxy(0, 50, score_bar);
 }
 
 void Player::Tick(const int& delta) {
@@ -62,7 +75,7 @@ void Player::Tick(const int& delta) {
 	ani_list[current_ani_set]->Tick(delta);
 	counter += delta;
 	
-	angle += 3.14159 / 180 * delta / 10;
+	angle += 3.14159 / 180 * delta / 20;
 	if (angle > 2 * 3.14159) angle -= 2 * 3.14159;
 
 	switch (this->status)
@@ -85,8 +98,8 @@ void Player::Tick(const int& delta) {
 			Attach();
 		}
 		else {
-			pos.x += (long)speed.x;
-			pos.y += (long)speed.y;
+			pos.x += (long)speed.x * delta / 10;
+			pos.y += (long)speed.y * delta / 10;
 		}
 	}
 		break;

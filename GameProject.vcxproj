@@ -168,10 +168,10 @@
     <ClInclude Include="header\object\Object.h" />
     <ClInclude Include="header\object\Obstacle.h" />
     <ClInclude Include="header\object\Player.h" />
+    <ClInclude Include="header\object\Score.h" />
     <ClInclude Include="header\stdlibs.h" />
     <ClInclude Include="header\ui\Arena.h" />
     <ClInclude Include="header\ui\Button.h" />
-    <ClInclude Include="header\ui\score_display.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -187,12 +187,12 @@
     <ClCompile Include="src\object\Object.cpp" />
     <ClCompile Include="src\object\Obstacle.cpp" />
     <ClCompile Include="src\object\Player.cpp" />
+    <ClCompile Include="src\object\Score.cpp" />
     <ClCompile Include="src\stdlibs.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\ui\Arena.cpp" />
     <ClCompile Include="src\ui\Button.cpp" />
-    <ClCompile Include="src\ui\score.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

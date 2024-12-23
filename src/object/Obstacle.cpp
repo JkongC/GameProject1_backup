@@ -15,6 +15,7 @@ Obstacle::Obstacle(const double& origin_angle)
 {
 	this->width = img->getwidth();
 	this->height = img->getheight();
+	this->life = -1;
 
 	Scene::GetScene().AddObject(this);
 }
@@ -63,7 +64,7 @@ void Obstacle::Render()
 
 bool Obstacle::CheckCollision(Player& player)
 {
-	if (this->GetCenter().GetDistanceFrom(player.GetCenter()) < this->width / 2 + player.width / 2) {
+	if (this->GetCenter().GetDistanceFrom(player.GetCenter()) < this->width / 2 + player.width / 2 - 10) {
 		return true;
 	}
 
