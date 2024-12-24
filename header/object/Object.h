@@ -10,6 +10,8 @@ protected:
 	{};
 
 public:
+	virtual ~Object() {};
+
 	virtual void Render() = 0;
 	
 	virtual void Tick(const int& delta) {};

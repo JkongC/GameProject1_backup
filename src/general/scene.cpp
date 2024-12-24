@@ -8,6 +8,7 @@
 #include "object/Obstacle.h"
 #include "object/Score.h"
 #include "general/scene.h"
+#include "general/SD_Music.h"
 
 Camera::Camera()
 	: center_point({ window_x / 2, window_y / 2 }), scale(1), angle(0)
@@ -133,6 +134,23 @@ void Scene::Render() {
 
 void Scene::SetCurrentScene(const SceneType& type) {
 	current_scene = type;
+	SD_music_close();
+	switch (current_scene)
+	{
+	case Scene::SceneType::MainMenu:
+		break;
+	case Scene::SceneType::Game:
+		mciSendString(L"play BGM repeat", NULL, 0, NULL);
+		break;
+	case Scene::SceneType::Settings:
+		break;
+	case Scene::SceneType::DieMenu:
+		break;
+	case Scene::SceneType::Void:
+		break;
+	default:
+		break;
+	}
 }
 
 void Scene::SetSceneBackground(const SceneType& type, IMAGE* background) {
@@ -175,24 +193,9 @@ std::vector<Object*>& Scene::GetCurrentObjectList() {
 }
 
 Scene::~Scene() {
-	auto& objs = GetObjects();
-	for (Object* obj : objs) {
-		Player* player = dynamic_cast<Player*>(obj);
-		if (player) {
-			delete player;
-			continue;
-		}
-
-		Obstacle* obstacle = dynamic_cast<Obstacle*>(obj);
-		if (obstacle) {
-			delete obstacle;
-			continue;
-		}
-
-		Score* score = dynamic_cast<Score*>(obj);
-		if (obstacle) {
-			delete obstacle;
-			continue;
+	for (auto& lst : scene_obj_list) {
+		for (Object*& obj : lst) {
+			delete obj;
 		}
 	}
 }

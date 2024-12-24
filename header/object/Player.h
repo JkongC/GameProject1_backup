@@ -36,7 +36,7 @@ public:
 
 	inline void SetScore(const int& score) { this->score = score; };
 
-	~Player();
+	~Player() override;
 private:
 	int health;
 	int score;

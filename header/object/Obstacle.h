@@ -5,15 +5,13 @@ class Obstacle : public Object
 public:
 	Obstacle(const double& origin_angle);
 
-	~Obstacle();
+	~Obstacle() override;
 
 	void Tick(const int& delta) override;
 
 	void Render();
 
 	bool CheckCollision(Player& player);
-
-	void DamagePlayer(Player& player);
 private:
 	IMAGE* img;
 

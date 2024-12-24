@@ -13,6 +13,7 @@
 #include "object/Obstacle.h"
 #include "object/Score.h"
 #include "general/scene.h"
+#include "ui/game_over_screen.h"
 #include "resource.h"
 #include "general/SD_Music.h"
 
@@ -109,16 +110,28 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		}
 
 		cleardevice();
-		Pos background = scene.GetCamera().GetRelativePos({ 0, 0 });
-		scene.Render();
+		scene.Render();  //场景批量渲染
 
 		FlushBatchDraw();
 		
 		const int& time_elapsed = timer.SinceLast();  //计算自从上次调用Start或SinceLast以来，经过的时间
 
-		scene.Tick(time_elapsed);
-		ScoreGenerator::GetGenerator().TryGenerate(time_elapsed);
+		scene.Tick(time_elapsed);  //场景批量更新
 
+		//场景专属操作
+		switch (scene.GetCurrentScene())
+		{
+		case Scene::SceneType::Game:
+			ScoreGenerator::GetGenerator().TryGenerate(time_elapsed);
+			break;
+		case Scene::SceneType::DieMenu:
+			GameOverScreenProcess();
+			break;
+		default:
+			break;
+		}
+
+		//帧数控制
 		if (time_elapsed < 1000 / 144) {
 			Sleep(1000 / 144 - time_elapsed);
 		}

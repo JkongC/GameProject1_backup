@@ -10,7 +10,7 @@ public:
 	
 	Score(long x, long y, Count type);
 
-	~Score();
+	~Score() override;
 
 	void Tick(const int& delta) override;
 

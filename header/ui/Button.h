@@ -12,7 +12,7 @@ public:
         loadimage(&img_pushed, path_img_pushed);
     }
 
-    ~Button() = default;
+    ~Button() override {};
 
     void ProcessEvent(const ExMessage& msg)
     {
@@ -42,13 +42,13 @@ public:
         switch (status)
         {
         case Status::Idle:
-            putimage(region.left, region.top, &img_idle);
+            putimage_alpha(&img_idle, region.left, region.top, 0, 0, img_idle.getwidth(), img_idle.getheight());
             break;
         case Status::Hovered:
-            putimage(region.left, region.top, &img_hovered);
+            putimage_alpha(&img_hovered, region.left, region.top, 0, 0, img_hovered.getwidth(), img_hovered.getheight());
             break;
         case Status::Pushed:
-            putimage(region.left, region.top, &img_pushed);
+            putimage_alpha(&img_pushed, region.left, region.top, 0, 0, img_pushed.getwidth(), img_pushed.getheight());
             break;
         }
     }

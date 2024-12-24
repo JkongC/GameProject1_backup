@@ -47,12 +47,12 @@ public:
 	enum class SceneType
 	{
 		MainMenu = 0, Game, Settings, DieMenu, Void
-	};   //Void����ռλ������Ҫ�л�������ʼ�ձ�֤����ĩβ
+	};
 
 	static Scene& GetScene() {
 		static Scene scene;
 		return scene;
-	}   //����ģʽ
+	}
 	
 	void Tick(const int& delta);
 
@@ -63,6 +63,8 @@ public:
 	void Render();
 	
 	void SetCurrentScene(const SceneType& type);
+
+	inline const SceneType& GetCurrentScene() { return current_scene; }
 
 	void SetSceneBackground(const SceneType& type, IMAGE* background);
 

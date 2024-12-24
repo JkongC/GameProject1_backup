@@ -7,7 +7,7 @@ class Arrow : public Object
 	friend class Player;
 private:
 	Arrow();
-	~Arrow();
+	~Arrow() override;
 
 	void Render();
 
