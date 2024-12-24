@@ -46,6 +46,6 @@ private:
 
 	~ScoreGenerator() = default;
 
-	const int cooldown = 2000;
+	const int cooldown = 3000;
 	int counter;
 };

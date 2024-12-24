@@ -135,9 +135,5 @@ void ScoreGenerator::TryGenerate(const int& delta)
 		score_type = Score::Count::Twenty;
 	}
 
-	Player& player = *Scene::GetScene().GetPlayer();
-	if (player.CheckFlying())
-	{
-		new Score((long)(cos(degree) * x + Arena::center.x), (long)(sin(degree) * y + Arena::center.y), score_type);
-	}
+	new Score((long)(cos(degree) * x + Arena::center.x), (long)(sin(degree) * y + Arena::center.y), score_type);
 }
