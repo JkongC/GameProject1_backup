@@ -33,12 +33,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="GameProject.rc">
+    <Image Include="resources\UI\test.png">
       <Filter>资源文件</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="resources\crystal.png">
+    </Image>
+    <Image Include="resources\UI\arrow.png">
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="resources\UI\BACK_hoverd.png">
@@ -47,7 +45,25 @@
     <Image Include="resources\UI\BACK_pushed.png">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="resources\crystal.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\diemenu_bg1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\game_bg1.png">
+      <Filter>资源文件</Filter>
+    </Image>
     <Image Include="resources\UI\LEADERBOARD.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\mainmenu_bg1.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\image\obstacle.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\image\player.png">
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="resources\UI\quit_game_hovered.png">
@@ -57,6 +73,15 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="resources\UI\quit_game_pushed.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\image\score_5.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\image\score_10.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="resources\image\score_20.png">
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="resources\UI\Settings.png">
@@ -71,28 +96,10 @@
     <Image Include="resources\UI\start_game_pushed.png">
       <Filter>资源文件</Filter>
     </Image>
-    <Image Include="resources\UI\arrow.png">
+    <Image Include="resources\UI\back_die.png">
       <Filter>资源文件</Filter>
     </Image>
-    <Image Include="resources\UI\test.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\game_bg1.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\image\obstacle.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\image\player.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\image\score_5.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\image\score_10.png">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="resources\image\score_20.png">
+    <Image Include="resources\UI\playagain.png">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
@@ -189,5 +196,10 @@
     <ClCompile Include="src\ui\game_over_screen.cpp">
       <Filter>源文件\ui</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameProject.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

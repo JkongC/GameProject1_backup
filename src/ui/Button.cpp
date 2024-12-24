@@ -86,7 +86,7 @@ RestartGameButton::RestartGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR p
 
 RestartGameButton::~RestartGameButton() = default;
 
-void RestartGameButton::Onclick()
+void RestartGameButton::OnClick()
 {
     SD_music_button();
     Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);

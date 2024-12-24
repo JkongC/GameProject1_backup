@@ -27,6 +27,28 @@ Score::~Score() = default;
 
 void Score::Tick(const int& delta)
 {
+	this->counter += delta;
+	while (this->counter >= 3000)
+	{
+		flash = true;
+		this->counter = 0;
+	}
+
+	if (flash)
+	{
+		this->scounter += delta;
+		if (this->scounter >= 500)
+		{
+			show = show ? false : true;
+			dying_countdown++;
+			this->scounter = 0;
+			if (dying_countdown > 6)
+			{
+				this->should_remove = true;
+			}
+		}
+	}
+
 	if (CheckCollsion()) {
 		this->should_remove = true;
 		BonusPlayer(*Scene::GetScene().GetPlayer());
@@ -35,7 +57,14 @@ void Score::Tick(const int& delta)
 
 void Score::Render()
 {
-	putimage_alpha(Score::img_list[(int)this->type], pos.x, pos.y, 0, 0, width, height);
+	if (!show)
+	{
+		return;
+	}
+	else if (show)
+	{
+		putimage_alpha(Score::img_list[(int)this->type], pos.x, pos.y, 0, 0, width, height);
+	}
 }
 
 bool Score::CheckCollsion()

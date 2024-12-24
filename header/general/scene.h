@@ -47,12 +47,12 @@ public:
 	enum class SceneType
 	{
 		MainMenu = 0, Game, Settings, DieMenu, Void
-	};   //Void仅作占位符，不要切换到它，始终保证它在末尾
+	};   //Void锟斤拷锟斤拷占位锟斤拷锟斤拷锟斤拷要锟叫伙拷锟斤拷锟斤拷锟斤拷始锟秸憋拷证锟斤拷锟斤拷末尾
 
 	static Scene& GetScene() {
 		static Scene scene;
 		return scene;
-	}   //单例模式
+	}   //锟斤拷锟斤拷模式
 	
 	void Tick(const int& delta);
 

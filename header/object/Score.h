@@ -23,6 +23,10 @@ public:
 public:
 	static std::array<IMAGE*, 3> img_list;
 	Count type;
+	int counter = 0;
+	int scounter = 0;
+	bool flash = false;
+	int dying_countdown = 0;
 };
 
 class ScoreGenerator
