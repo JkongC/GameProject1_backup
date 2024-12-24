@@ -79,7 +79,7 @@ void ScoreGenerator::TryGenerate(const int& delta)
 
 	static std::normal_distribution<> radius_rate(0, 0.2);
 	static std::uniform_int_distribution<> degree_dist(0, 359);
-	static std::uniform_int_distribution<> score_type(0, 2);
+	static std::uniform_int_distribution<> score_type_rd(0, 10);
 
 	double r = 1;
 	double degree = degree_dist(rand);
@@ -93,5 +93,18 @@ void ScoreGenerator::TryGenerate(const int& delta)
 	long x = (long)sqrt(Arena::long_axis * Arena::long_axis * r);
 	long y = (long)sqrt(Arena::short_axis * Arena::short_axis * r);
 
-	new Score((long)(cos(degree) * x + Arena::center.x), (long)(sin(degree) * y + Arena::center.y), (Score::Count)score_type(rand));
+	int score_type_rdvalue = score_type_rd(rand);
+	Score::Count score_type;
+
+	if (score_type_rdvalue <= 5) {
+		score_type = Score::Count::Five;
+	}
+	else if (score_type_rdvalue > 5 && score_type_rdvalue <= 8) {
+		score_type = Score::Count::Ten;
+	}
+	else {
+		score_type = Score::Count::Twenty;
+	}
+
+	new Score((long)(cos(degree) * x + Arena::center.x), (long)(sin(degree) * y + Arena::center.y), score_type);
 }

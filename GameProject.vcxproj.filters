@@ -186,5 +186,8 @@
     <ClCompile Include="src\stdlibs.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\game_over_screen.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@
 //函数
 void SD_Music_import(void)
 {
-	mciSendString(L"open bgm.wav alias BGM", NULL, 0, NULL);//打开音频文件
+	mciSendString(L"open resources/sound/bgm.mp3 alias BGM", NULL, 0, NULL);//打开音频文件
 	mciSendString(L"open put_down.ogg alias PUT_DOWN", NULL, 0, NULL);
 	mciSendString(L"open failure_music.wav alias FAILURE", NULL, 0, NULL);
 	mciSendString(L"open move.wav alias MOVE", NULL, 0, NULL);

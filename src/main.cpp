@@ -63,6 +63,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 	LoadResources();
 	
+	//初始化音乐
+	SD_Music_import();
+	
 	initgraph(window_x, window_y, EX_NOCLOSE);
 	running = true;
 
@@ -73,10 +76,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	Obstacle* ob1 = new Obstacle(0.8 * PI);
 	Obstacle* ob2 = new Obstacle(0.5 * PI);
 	scene.GetInputEvent().AddConcern(p1);  //让玩家关注输入事件
-
-	//初始化音乐
-	SD_Music_import();
-
 	
 	//初始化UI按钮
 	//创建开始游戏按钮
