@@ -101,7 +101,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		//消息处理
 		while (peekmessage(&msg)) 
 		{
-			if (msg.vkcode == VK_SPACE || msg.message == WM_MOUSEMOVE) {
+			if (msg.vkcode == VK_SPACE || msg.message == WM_MOUSEMOVE || msg.message == WM_LBUTTONDOWN) {
 				scene.GetInputEvent().Emit(msg);  //让关注输入事件的对象进行处理
 			}
 			else if (msg.vkcode == VK_ESCAPE) {
