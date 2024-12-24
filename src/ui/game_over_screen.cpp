@@ -1,12 +1,13 @@
 #include "stdlibs.h"
 
-#include "ui/game_over_screen.h"
-#include <graphics.h>
-#include "resource.h"
-#include "ui/Button.h"
-#include "general/scene.h"
-#include "general/SD_Music.h"
 #include "general/util.h"
+
+#include "ui/game_over_screen.h"
+#include "resource.h"
+#include "object/Object.h"
+#include "ui/Button.h"
+#include "general/event.h"
+#include "general/scene.h"
 
 void ShowGameOverScreen(int Score)
 {

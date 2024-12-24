@@ -86,9 +86,8 @@ public:
     ~RestartGameButton();
 
 private:
-    void Onclick();
+    void OnClick();
 };
-
 
 class StartGameButton : public Button
 {
