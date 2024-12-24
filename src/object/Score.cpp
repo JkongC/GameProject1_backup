@@ -28,7 +28,7 @@ Score::~Score() = default;
 void Score::Tick(const int& delta)
 {
 	this->counter += delta;
-	while (this->counter >= 3000)
+	while (this->counter >= 5000)
 	{
 		flash = true;
 		this->counter = 0;
@@ -37,12 +37,12 @@ void Score::Tick(const int& delta)
 	if (flash)
 	{
 		this->scounter += delta;
-		if (this->scounter >= 500)
+		if (this->scounter >= 250)
 		{
 			show = show ? false : true;
 			dying_countdown++;
 			this->scounter = 0;
-			if (dying_countdown > 6)
+			if (dying_countdown > 12)
 			{
 				this->should_remove = true;
 			}
@@ -70,7 +70,7 @@ void Score::Render()
 bool Score::CheckCollsion()
 {
 	Player* player = Scene::GetScene().GetPlayer();
-	if (this->GetCenter().GetDistanceFrom(player->GetCenter()) < this->width / 2 + player->width - 20) {
+	if (this->GetCenter().GetDistanceFrom(player->GetCenter()) < this->width / 2 + player->width - 40) {
 		return true;
 	}
 
