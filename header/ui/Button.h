@@ -30,7 +30,7 @@ public:
             break;
         case WM_LBUTTONUP:
             if (status == Status::Pushed)
-                OnClick();
+                InputHandle(msg);
             break;
         default:
             break;
@@ -54,7 +54,7 @@ public:
     }
 
 protected:
-    virtual void OnClick() = 0;
+    virtual void InputHandle(const ExMessage& msg) = 0; // 将处理输入事件
 
 private:
     enum class Status
@@ -71,7 +71,7 @@ private:
     IMAGE img_pushed;
     Status status = Status::Idle;
 
-private:
+public:
     bool CheckCursorHit(int x, int y)
     {
         return x >= region.left && x <= region.right && y >= region.top && y <= region.bottom;
@@ -86,7 +86,7 @@ public:
     ~RestartGameButton();
 
 private:
-    void OnClick();
+    void InputHandle(const ExMessage& msg) override;
 };
 
 class StartGameButton : public Button
@@ -96,7 +96,7 @@ public:
     ~StartGameButton();
 
 protected:
-    void OnClick();
+    void InputHandle(const ExMessage& msg) override;
 };
 
 class QuitGameButton : public Button
@@ -106,7 +106,8 @@ public:
     ~QuitGameButton();
 
 protected:
-    void OnClick();
+    void InputHandle(const ExMessage& msg) override;
+
 };
 
 class SettingButton : public Button
@@ -116,7 +117,8 @@ public:
     ~SettingButton();
 
 protected:
-    void OnClick();
+    void InputHandle(const ExMessage& msg) override;
+
 };
 
 class BackButton : public Button
@@ -126,5 +128,6 @@ public:
     ~BackButton();
 
 protected:
-    void OnClick();
+    void InputHandle(const ExMessage& msg) override;
+
 };
