@@ -33,9 +33,9 @@ void Obstacle::Tick(const int& delta)
 	R_angle += PI / 180 * delta / 50;
 	if (R_angle > 2 * PI) R_angle -= 2 * PI;
 
-	int arena_long = Arena::GetArena().long_axis * 1.1;
-	int arena_short = Arena::GetArena().short_axis * 1.1;
-	const Pos& arena_center = Arena::GetArena().center;
+	int arena_long = Arena::long_axis * 1.1;
+	int arena_short = Arena::short_axis * 1.1;
+	const Pos& arena_center = Arena::center;
 
 	this->pos = {(long)(arena_long * cos(R_angle) - width / 2 + arena_center.x), (long)(arena_short * sin(R_angle) - height / 2 + arena_center.y)};
 	

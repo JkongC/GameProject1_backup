@@ -16,7 +16,7 @@ extern std::unique_ptr<Animation> player_right;
 Player::Player()
 	:current_ani_set(0), health(5), score(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
 {
-	this->pos = { window_x / 2 - Arena::GetArena().long_axis, window_y / 2 - 50};
+	this->pos = { window_x / 2 - Arena::long_axis, window_y / 2 - 50};
 	ani_list.push_back(player_right.get());
 
 	this->width = ani_list[0]->GetWidth();
@@ -148,10 +148,10 @@ void Player::Attach() {
 		pos.y += speed_norm.y;
 	}  //位置修正
 
-	double arena_long = Arena::GetArena().long_axis;  //场地椭圆长轴
-	double arena_short = Arena::GetArena().short_axis;  //场地椭圆短轴
+	double arena_long = Arena::long_axis;  //场地椭圆长轴
+	double arena_short = Arena::short_axis;  //场地椭圆短轴
 	
-	Pos delta = this->GetCenter() - Arena::GetArena().center;  //玩家位置到圆心的方向向量
+	Pos delta = this->GetCenter() - Arena::center;  //玩家位置到圆心的方向向量
 	double k1 = (double)delta.y / (double)delta.x;  //方向向量所在直线的斜率
 	double temp_angle;
 	if (k1) {

@@ -90,8 +90,8 @@ void ScoreGenerator::TryGenerate(const int& delta)
 		r = radius_rate(rand);
 	}
 
-	long x = (long)sqrt(Arena::GetArena().long_axis * Arena::GetArena().long_axis * r);
-	long y = (long)sqrt(Arena::GetArena().short_axis * Arena::GetArena().short_axis * r);
+	long x = (long)sqrt(Arena::long_axis * Arena::long_axis * r);
+	long y = (long)sqrt(Arena::short_axis * Arena::short_axis * r);
 
-	new Score((long)(cos(degree) * x + Arena::GetArena().center.x), (long)(sin(degree) * y + Arena::GetArena().center.y), (Score::Count)score_type(rand));
+	new Score((long)(cos(degree) * x + Arena::center.x), (long)(sin(degree) * y + Arena::center.y), (Score::Count)score_type(rand));
 }
