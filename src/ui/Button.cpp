@@ -23,12 +23,10 @@ StartGameButton::StartGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_
 
 StartGameButton::~StartGameButton() = default;
 
-void StartGameButton::InputHandle(const ExMessage& msg) {
-    if (msg.message == WM_LBUTTONUP && CheckCursorHit(msg.x, msg.y)) {
-        SD_music_button();
-        Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
-        SD_music_first_level();
-    }
+void StartGameButton::OnClick() {
+    SD_music_button();
+    Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
+    SD_music_first_level();
 }
 
 // 退出游戏按钮
@@ -40,12 +38,10 @@ QuitGameButton::QuitGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_im
 
 QuitGameButton::~QuitGameButton() = default;
 
-void QuitGameButton::InputHandle(const ExMessage& msg) {
-    if (msg.message == WM_LBUTTONUP && CheckCursorHit(msg.x, msg.y)) {
-        SD_music_button();
-        SD_music_close();
-        running = false;
-    }
+void QuitGameButton::OnClick() {
+    SD_music_button();
+    SD_music_close();
+    running = false;
 }
 
 //打开设置界面按钮
@@ -57,11 +53,9 @@ SettingButton::SettingButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_img_
 
 SettingButton::~SettingButton() = default;
 
-void SettingButton::InputHandle(const ExMessage& msg) {
-    if (msg.message == WM_LBUTTONUP && CheckCursorHit(msg.x, msg.y)) {
-        SD_music_button();
-        Scene::GetScene().SetCurrentScene(Scene::SceneType::Settings);
-    }
+void SettingButton::OnClick() {
+    SD_music_button();
+    Scene::GetScene().SetCurrentScene(Scene::SceneType::Settings);
 }
 
 //返回主菜单按钮
@@ -73,12 +67,10 @@ BackButton::BackButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR path_img_hovere
 
 BackButton::~BackButton() = default;
 
-void BackButton::InputHandle(const ExMessage& msg) {
-    if (msg.message == WM_LBUTTONUP && CheckCursorHit(msg.x, msg.y)) {
-        SD_music_button();
-        Scene::GetScene().SetCurrentScene(Scene::SceneType::MainMenu);
-        SD_music_bgm();
-    }
+void BackButton::OnClick() {
+    SD_music_button();
+    Scene::GetScene().SetCurrentScene(Scene::SceneType::MainMenu);
+    SD_music_bgm();
 }
 
 
@@ -91,10 +83,8 @@ RestartGameButton::RestartGameButton(RECT rect, LPCTSTR path_img_idle, LPCTSTR p
 
 RestartGameButton::~RestartGameButton() = default;
 
-void RestartGameButton::InputHandle(const ExMessage& msg) {
-    if (msg.message == WM_LBUTTONUP && CheckCursorHit(msg.x, msg.y)) {
-        SD_music_button();
-        Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
-        SD_music_first_level();
-    }
+void RestartGameButton::OnClick() {
+    SD_music_button();
+    Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
+    SD_music_first_level();
 }

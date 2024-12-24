@@ -14,7 +14,7 @@ public:
 
     ~Button() override {};
 
-    void ProcessEvent(const ExMessage& msg)
+    void InputHandle(const ExMessage& msg) override
     {
         switch (msg.message)
         {
@@ -30,7 +30,7 @@ public:
             break;
         case WM_LBUTTONUP:
             if (status == Status::Pushed)
-                InputHandle(msg);
+                OnClick();
             break;
         default:
             break;
@@ -54,7 +54,7 @@ public:
     }
 
 protected:
-    virtual void InputHandle(const ExMessage& msg) = 0; // 将处理输入事件
+    virtual void OnClick() = 0;  // 将处理点击事件
 
 private:
     enum class Status
@@ -86,7 +86,7 @@ public:
     ~RestartGameButton();
 
 private:
-    void InputHandle(const ExMessage& msg) override;
+    void OnClick();
 };
 
 class StartGameButton : public Button
@@ -96,7 +96,7 @@ public:
     ~StartGameButton();
 
 protected:
-    void InputHandle(const ExMessage& msg) override;
+    void OnClick();
 };
 
 class QuitGameButton : public Button
@@ -106,7 +106,7 @@ public:
     ~QuitGameButton();
 
 protected:
-    void InputHandle(const ExMessage& msg) override;
+    void OnClick();
 
 };
 
@@ -117,7 +117,7 @@ public:
     ~SettingButton();
 
 protected:
-    void InputHandle(const ExMessage& msg) override;
+    void OnClick();
 
 };
 
@@ -128,6 +128,6 @@ public:
     ~BackButton();
 
 protected:
-    void InputHandle(const ExMessage& msg) override;
+    void OnClick();
 
 };
