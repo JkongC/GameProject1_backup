@@ -100,7 +100,7 @@ void Scene::Tick(const int& delta) {
 	auto& lst = GetCurrentObjectList();
 	for (size_t idx = 0; idx < lst.size(); idx++)
 	{
-		if (lst[idx]->life == 0)
+		if (lst[idx]->should_remove)
 		{
 			std::swap(lst[idx], lst[lst.size() - 1]);
 			delete lst[lst.size() - 1];

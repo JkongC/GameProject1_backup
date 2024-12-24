@@ -28,7 +28,7 @@ Score::~Score() = default;
 void Score::Tick(const int& delta)
 {
 	if (CheckCollsion()) {
-		this->life = 0;
+		this->should_remove = true;
 		BonusPlayer(*Scene::GetScene().GetPlayer());
 	}
 }
