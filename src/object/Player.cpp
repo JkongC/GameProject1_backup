@@ -146,6 +146,7 @@ void Player::InputHandle(const ExMessage& msg) {
 
 void Player::Launch() {
 	this->status = Status::Flying;
+	this->flying = true;
 
 	Vec2d direction = {cos(this->arrow->angle), -sin(this->arrow->angle)};
 	direction.Normalize(7);
@@ -155,6 +156,8 @@ void Player::Launch() {
 
 void Player::Attach() {
 	this->status = Status::Attached;
+	this->flying = false;
+
 	Vec2d speed_norm = speed;
 	speed_norm.Normalize(3);
 
