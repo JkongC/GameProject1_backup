@@ -28,7 +28,7 @@ Score::~Score() = default;
 void Score::Tick(const int& delta)
 {
 	this->counter += delta;
-	while (this->counter >= 5000)
+	while (this->counter >= 7000)
 	{
 		flash = true;
 		this->counter = 0;
@@ -42,7 +42,7 @@ void Score::Tick(const int& delta)
 			show = show ? false : true;
 			dying_countdown++;
 			this->scounter = 0;
-			if (dying_countdown > 12)
+			if (dying_countdown > 16)
 			{
 				this->should_remove = true;
 			}
@@ -100,7 +100,7 @@ void Score::BonusPlayer(Player& player)
 void ScoreGenerator::TryGenerate(const int& delta)
 {
 	counter += delta;
-	if (counter < cooldown) return;
+	if (counter < cooldown || Scene::GetScene().GetPlayer()->GetStatus() == Player::Status::Flying) return;
 
 	counter = 0;
 	static std::random_device rd;
@@ -119,8 +119,13 @@ void ScoreGenerator::TryGenerate(const int& delta)
 		r = radius_rate(rand);
 	}
 
-	long x = (long)sqrt(Arena::long_axis * Arena::long_axis * r);
-	long y = (long)sqrt(Arena::short_axis * Arena::short_axis * r);
+	long x = (long)sqrt(Arena::long_axis * Arena::long_axis * abs(r));
+	long y = (long)sqrt(Arena::short_axis * Arena::short_axis * abs(r));
+
+	if (r < 0) {
+		x = -x;
+		y = -y;
+	}
 
 	int score_type_rdvalue = score_type_rd(rand);
 	Score::Count score_type;

@@ -71,11 +71,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 	Scene& scene = Scene::GetScene();
 
-	//场景1玩家
-	Player* p1 = new Player();
-	Obstacle* ob1 = new Obstacle(0.8 * PI);
-	Obstacle* ob2 = new Obstacle(0.5 * PI);
-	scene.GetInputEvent().AddConcern(p1);  //让玩家关注输入事件
+	new Player();
+	new Obstacle(0.8 * PI);
+	new Obstacle(0.5 * PI);
+	new Obstacle(-0.6 * PI);
 	
 	//初始化UI按钮
 	//创建开始游戏按钮

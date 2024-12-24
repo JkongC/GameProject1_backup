@@ -36,6 +36,10 @@ public:
 
 	inline void SetScore(const int& score) { this->score = score; };
 
+	inline Status GetStatus() { return this->status; };
+
+	inline void SetStatus(const Status& status) { this->status = status; }
+
 	~Player() override;
 private:
 	int health;

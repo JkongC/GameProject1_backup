@@ -29,6 +29,7 @@ Player::Player()
 	this->life = -1;
 
 	Scene::GetScene().SetPlayer(this);
+	Scene::GetScene().GetInputEvent().AddConcern(this);
 
 	Attach();
 
@@ -145,7 +146,7 @@ void Player::InputHandle(const ExMessage& msg) {
 }
 
 void Player::Launch() {
-	this->status = Status::Flying;
+	SetStatus(Status::Flying);
 
 	Vec2d direction = {cos(this->arrow->angle), -sin(this->arrow->angle)};
 	direction.Normalize(7);
@@ -154,7 +155,7 @@ void Player::Launch() {
 }
 
 void Player::Attach() {
-	this->status = Status::Attached;
+	SetStatus(Status::Attached);
 
 	Vec2d speed_norm = speed;
 	speed_norm.Normalize(3);
