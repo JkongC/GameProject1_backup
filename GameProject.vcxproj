@@ -138,12 +138,14 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\crystal.png" />
+    <Image Include="resources\diemenu_bg1.png" />
     <Image Include="resources\game_bg1.png" />
     <Image Include="resources\image\obstacle.png" />
     <Image Include="resources\image\player.png" />
     <Image Include="resources\image\score_10.png" />
     <Image Include="resources\image\score_20.png" />
     <Image Include="resources\image\score_5.png" />
+    <Image Include="resources\mainmenu_bg1.png" />
     <Image Include="resources\UI\arrow.png" />
     <Image Include="resources\UI\BACK_hoverd.png" />
     <Image Include="resources\UI\BACK_pushed.png" />

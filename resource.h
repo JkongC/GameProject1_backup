@@ -22,12 +22,14 @@
 #define SCORE_10                        120
 #define IDB_PNG5                        121
 #define SCORE_20                        121
+#define DIEMENU_BG1                     122
+#define MAINMENU_BG1                    123
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        122
+#define _APS_NEXT_RESOURCE_VALUE        124
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101
