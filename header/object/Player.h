@@ -36,6 +36,8 @@ public:
 
 	inline void SetScore(const int& score) { this->score = score; };
 
+	bool CheckFlying() { return this->flying; };
+
 	~Player() override;
 private:
 	int health;
@@ -60,4 +62,6 @@ private:
 	bool immune_damage;
 	int im_counter;
 	int flash_counter;
+
+	bool flying = false;
 };
