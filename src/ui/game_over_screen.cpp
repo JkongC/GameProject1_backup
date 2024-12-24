@@ -1,13 +1,28 @@
 #include "ui/game_over_screen.h"
 #include <graphics.h>
 #include "stdlibs.h"
-#include "Button.h"
+#include <tchar.h>
+#include <ShellScalingApi.h>
+#include "general/globals.h"
+#include "general/util.h"
+#include "object/Animation.h"
+#include "object/Object.h"
+#include "general/event.h"
+#include "object/Player.h"
+#include "ui/Button.h"
+#include "ui/Arena.h"
+#include "object/Obstacle.h"
+#include "object/Score.h"
+#include "general/scene.h"
+#include "resource.h"
+#include "general/SD_Music.h"
 
 void ShowGameOverScreen(int score) {
     // 加载并显示游戏结束背景
     IMAGE game_over_bg;
-    loadimage(&game_over_bg, _T("game_over_background.png"), window_x, window_y, true);
-    putimage(0, 0, &game_over_bg);
+
+    loadimage(&game_over_bg, _T("PNG"), MAKEINTRESOURCE(DIEMENU_BG1), window_x, window_y, true);
+    Scene::GetScene().SetSceneBackground(Scene::SceneType::DieMenu, &game_over_bg);
 
     // 显示得分
     char buffer[50];

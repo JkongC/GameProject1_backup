@@ -8,6 +8,7 @@
 #include "object/Player.h"
 #include "object/Arrow.h"
 #include "ui/Arena.h"
+#include "ui/game_over_screen.h"
 #include "general/scene.h"
 #include "general/globals.h"
 
@@ -67,7 +68,7 @@ void Player::Render() {
 
 void Player::Tick(const int& delta) {
 	if (health <= 0) {
-		running = false;
+		ShowGameOverScreen(GetScore());
 		return;
 	}
 	
