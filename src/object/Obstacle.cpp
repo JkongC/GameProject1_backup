@@ -11,7 +11,7 @@
 extern IMAGE obstacle;
 
 Obstacle::Obstacle(const double& origin_angle)
-	: img(&obstacle), R_angle(origin_angle), counter(0), can_damage(true)
+	: img(&obstacle), R_angle(origin_angle)
 {
 	this->width = img->getwidth();
 	this->height = img->getheight();
@@ -37,18 +37,9 @@ void Obstacle::Tick(const int& delta)
 	this->pos = {(long)(arena_long * cos(R_angle) - width / 2 + arena_center.x), (long)(arena_short * sin(R_angle) - height / 2 + arena_center.y)};
 	
 	Player& player = *Scene::GetScene().GetPlayer();
-	if (CheckCollision(player) && can_damage) {
-		DamagePlayer(player);
-		can_damage = false;
-		counter = 0;
-	}
-
-	if (!can_damage) {
-		counter += delta;
-		if (counter >= damage_cooldown) {
-			counter = 0;
-			can_damage = true;
-		}
+	if (CheckCollision(player) && !player.CheckImmunity()) {
+		player.Damage(1);
+		player.SetImmunity(true);
 	}
 }
 
@@ -66,9 +57,4 @@ bool Obstacle::CheckCollision(Player& player)
 	}
 
 	return false;
-}
-
-void Obstacle::DamagePlayer(Player& player)
-{
-	player.SetHealth(player.GetHealth() - 1);
 }

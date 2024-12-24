@@ -22,6 +22,12 @@ public:
 
 	void Attach();
 
+	void Damage(const int& dmg);
+
+	inline bool CheckImmunity() { return this->immune_damage; };
+
+	inline void SetImmunity(bool im) { this->immune_damage = im; };
+
 	inline int GetHealth() { return this->health; }
 
 	inline void SetHealth(const int& health) { this->health = health; }
@@ -51,4 +57,7 @@ private:
 	int R_angle;
 
 	bool lock_camera;
+	bool immune_damage;
+	int im_counter;
+	int flash_counter;
 };

@@ -15,7 +15,7 @@
 extern std::unique_ptr<Animation> player_right;
 
 Player::Player()
-	:current_ani_set(0), health(5), score(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0)
+	:current_ani_set(0), health(5), score(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0), immune_damage(false), im_counter(0), flash_counter(0)
 {
 	this->pos = { window_x / 2 - Arena::long_axis, window_y / 2 - 50};
 	ani_list.push_back(player_right.get());
@@ -36,7 +36,20 @@ Player::Player()
 }
 
 void Player::Render() {
+	TCHAR health_bar[10];
+	_stprintf_s(health_bar, _T("玩家生命值：%d"), this->health);
+	setbkmode(TRANSPARENT);
+	settextstyle(50, 20, _T("Microsoft YaHei UI"));
+	outtextxy(0, 0, health_bar);
+
+	TCHAR score_bar[10];
+	_stprintf_s(score_bar, _T("玩家分数：%d"), this->score);
+	setbkmode(TRANSPARENT);
+	settextstyle(50, 20, _T("Microsoft YaHei UI"));
+	outtextxy(0, 50, score_bar);
+	
 	if (!this->show) return;
+
 	Pos relative = Scene::GetScene().GetCamera().GetRelativePos(this->pos);
 	Transform();
 	ani_list[current_ani_set]->Render(relative.x, relative.y);
@@ -52,24 +65,27 @@ void Player::Render() {
 	default:
 		break;
 	}
-
-	TCHAR health_bar[10];
-	_stprintf_s(health_bar, _T("玩家生命值：%d"), this->health);
-	setbkmode(TRANSPARENT);
-	settextstyle(50, 20, _T("Microsoft YaHei UI"));
-	outtextxy(0, 0, health_bar);
-
-	TCHAR score_bar[10];
-	_stprintf_s(score_bar, _T("玩家分数：%d"), this->score);
-	setbkmode(TRANSPARENT);
-	settextstyle(50, 20, _T("Microsoft YaHei UI"));
-	outtextxy(0, 50, score_bar);
 }
 
 void Player::Tick(const int& delta) {
 	if (health <= 0) {
 		ShowGameOverScreen(GetScore());
 		return;
+	}
+
+	if (immune_damage) {
+		im_counter += delta;
+		if (im_counter >= 1500) {
+			im_counter = 0;
+			immune_damage = false;
+			show = true;
+		}
+
+		flash_counter += delta;
+		if (flash_counter >= 200) {
+			flash_counter = 0;
+			show = show ? false : true;
+		}
 	}
 	
 	ani_list[current_ani_set]->Tick(delta);
@@ -191,6 +207,10 @@ void Player::Attach() {
 	}
 
 	this->speed = { 0,0 };
+}
+
+void Player::Damage(const int& dmg) {
+	this->health -= dmg;
 }
 
 Player::~Player() {

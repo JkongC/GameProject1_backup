@@ -18,9 +18,6 @@ private:
 	IMAGE* img;
 
 	const int damage = 1;
-	const int damage_cooldown = 1000;
-	bool can_damage;
-	int counter;
 
 	double R_angle;
 };
