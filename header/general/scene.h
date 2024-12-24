@@ -76,7 +76,7 @@ public:
 
 	void RemoveObject(Object* obj);
 	
-	void ClearObjects();
+	[[deprecated]] void ClearObjects();
 
 private:
 	Scene() : current_scene(SceneType::Game), scene_obj_list(), scene_cam_list(), scene_inputevent_list(), scene_background_list(), player(nullptr) {}

@@ -17,7 +17,7 @@ void SD_Music_import(void)
 	mciSendString(L"play BGM repeat", NULL, 0, NULL);	//播放对应音频
 }
 
-void SD_music_button(void)//
+void SD_music_button(void)
 {
 	mciSendString(L"close PUT_DOWN", NULL, 0, NULL);//关闭播放过的该音效
 	mciSendString(L"open put_down.ogg alias PUT_DOWN", NULL, 0, NULL);//重新打开,相当于重置开始播放时间为零
