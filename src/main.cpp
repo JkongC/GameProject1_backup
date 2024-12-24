@@ -38,7 +38,6 @@ inline int LoadResources()
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 	Scene::GetScene().SetSceneBackground(Scene::SceneType::Game, &game_background);
-	loadimage(&main_menu_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
 
 	loadimage(&obstacle, _T("PNG"), MAKEINTRESOURCE(OBSTACLE), 90, 90, false);
 	loadimage(&score_5, _T("PNG"), MAKEINTRESOURCE(SCORE_5), 56, 56, false);
