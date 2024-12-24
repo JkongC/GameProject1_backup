@@ -5,6 +5,8 @@
 #include "object/Object.h"
 #include "general/event.h"
 #include "object/Player.h"
+#include "object/Obstacle.h"
+#include "object/Score.h"
 #include "general/scene.h"
 
 Camera::Camera()
@@ -151,7 +153,7 @@ void Scene::SetPlayer(Player* player) {
 }
 
 void Scene::RemoveObject(Object* obj) {
-	std::vector<Object*> current = GetCurrentObjectList();
+	auto& current = GetCurrentObjectList();
 	auto it = std::find(current.begin(), current.end(), obj);
 	int obj_index = -1;
 	if (it != current.end()) {
@@ -170,4 +172,27 @@ void Scene::ClearObjects() {
 
 std::vector<Object*>& Scene::GetCurrentObjectList() {
 	return this->scene_obj_list[(int)current_scene];
+}
+
+Scene::~Scene() {
+	auto& objs = GetObjects();
+	for (Object* obj : objs) {
+		Player* player = dynamic_cast<Player*>(obj);
+		if (player) {
+			delete player;
+			continue;
+		}
+
+		Obstacle* obstacle = dynamic_cast<Obstacle*>(obj);
+		if (obstacle) {
+			delete obstacle;
+			continue;
+		}
+
+		Score* score = dynamic_cast<Score*>(obj);
+		if (obstacle) {
+			delete obstacle;
+			continue;
+		}
+	}
 }

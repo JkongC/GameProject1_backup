@@ -7,12 +7,12 @@
 #include "object/Animation.h"
 #include "object/Object.h"
 #include "general/event.h"
-#include "general/scene.h"
 #include "object/Player.h"
 #include "ui/Button.h"
 #include "ui/Arena.h"
 #include "object/Obstacle.h"
 #include "object/Score.h"
+#include "general/scene.h"
 #include "resource.h"
 #include "general/SD_Music.h"
 
@@ -69,34 +69,27 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	Scene& scene = Scene::GetScene();
 
 	//场景1玩家
-	Player p1 = Player();
-	Obstacle ob1 = Obstacle(0.8 * PI);
-	Obstacle ob2 = Obstacle(0.5 * PI);
-	scene.GetInputEvent().AddConcern(&p1);  //让玩家关注输入事件
+	Player* p1 = new Player();
+	Obstacle* ob1 = new Obstacle(0.8 * PI);
+	Obstacle* ob2 = new Obstacle(0.5 * PI);
+	scene.GetInputEvent().AddConcern(p1);  //让玩家关注输入事件
 
 	//初始化音乐
 	SD_Music_import();
 
-	/*
+	
 	//初始化UI按钮
 	//创建开始游戏按钮
 	RECT startGameRect = { 100, 100, 300, 150 };
-	std::unique_ptr<StartGameButton> startGameBtn = std::make_unique<StartGameButton>
-		(startGameRect, _T("start_game_idle.png"), _T("start_game_hovered.png"), _T("start_game_pushed.png"));
-	scene.AddObject(startGameBtn.get());
+	StartGameButton* startGameBtn = new StartGameButton(startGameRect, _T("start_game_idle.png"), _T("start_game_hovered.png"), _T("start_game_pushed.png"));
 
 	// 创建退出游戏按钮
 	RECT quitGameRect = { 100, 200, 300, 250 };
-	std::unique_ptr<QuitGameButton> quitGameBtn = std::make_unique<QuitGameButton>
-		(quitGameRect, _T("quit_game_idle.png"), _T("quit_game_hovered.png"), _T("quit_game_pushed.png"));
-	scene.AddObject(quitGameBtn.get());
+	QuitGameButton* quitGameBtn = new QuitGameButton(quitGameRect, _T("quit_game_idle.png"), _T("quit_game_hovered.png"), _T("quit_game_pushed.png"));
 
 	// 创建设置按钮
 	RECT settingsRect = { 100, 300, 300, 350 };
-	std::unique_ptr<SettingButton> settingsBtn = std::make_unique<SettingButton>
-		(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
-	scene.AddObject(settingsBtn.get());
-	*/
+	SettingButton* settingsBtn = new SettingButton(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器

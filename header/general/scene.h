@@ -4,6 +4,8 @@
 
 class Object;
 class Player;
+class Obstacle;
+class Score;
 class InputEvent;
 
 class Camera {
@@ -83,7 +85,7 @@ private:
 
 	Scene& operator=(const Scene&) = delete;
 
-	~Scene() = default;
+	~Scene();
 
 private:
 	SceneType current_scene;

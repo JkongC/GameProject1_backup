@@ -4,9 +4,9 @@
 #include "object/Object.h"
 #include "object/Player.h"
 #include "general/event.h"
-#include "general/scene.h"
 #include "ui/Arena.h"
 #include "object/Obstacle.h"
+#include "general/scene.h"
 
 extern IMAGE obstacle;
 
@@ -20,10 +20,7 @@ Obstacle::Obstacle(const double& origin_angle)
 	Scene::GetScene().AddObject(this);
 }
 
-Obstacle::~Obstacle()
-{
-	Scene::GetScene().RemoveObject(this);
-}
+Obstacle::~Obstacle() = default;
 
 void Obstacle::Tick(const int& delta)
 {

@@ -5,10 +5,10 @@
 #include "general/util.h"
 #include "object/object.h"
 #include "general/event.h"
-#include "general/scene.h"
 #include "object/Player.h"
 #include "object/Arrow.h"
 #include "ui/Arena.h"
+#include "general/scene.h"
 #include "general/globals.h"
 
 extern std::unique_ptr<Animation> player_right;
@@ -27,7 +27,6 @@ Player::Player()
 	this->arrow = new Arrow();
 	this->life = -1;
 
-	Scene::GetScene().AddObject(this);
 	Scene::GetScene().SetPlayer(this);
 
 	Attach();

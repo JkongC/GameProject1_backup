@@ -1,8 +1,8 @@
 ﻿#include "stdlibs.h"
 #include "general/util.h"
 #include "general/event.h"
-#include "general/scene.h"
 #include "object/Object.h"
+#include "general/scene.h"
 
 void Object::SetScale(const double& scale) {
 	this->scale = scale;

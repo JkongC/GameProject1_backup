@@ -4,9 +4,9 @@
 #include "object/Object.h"
 #include "object/Player.h"
 #include "general/event.h"
-#include "general/scene.h"
 #include "ui/Arena.h"
 #include "object/Score.h"
+#include "general/scene.h"
 
 std::array<IMAGE*, 3> Score::img_list = { nullptr, nullptr, nullptr };
 
