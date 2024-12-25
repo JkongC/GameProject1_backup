@@ -1,6 +1,6 @@
 #include "stdlibs.h"
 
-#include "main_menu.h"
+#include "ui/main_menu.h"
 #include "general/util.h"
 #include "resource.h"
 #include "object/Object.h"
@@ -10,7 +10,7 @@
 
 IMAGE main_menu_bg;
 
-void ShowMainMenu()
+void InitMainMenu()
 {
     Scene::GetScene().SetCurrentScene(Scene::SceneType::MainMenu);
 

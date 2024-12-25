@@ -12,13 +12,13 @@
 #include "general/scene.h"
 #include "general/globals.h"
 
-extern std::unique_ptr<Animation> player_right;
+extern std::unique_ptr<Animation> player;
 
 Player::Player()
 	:current_ani_set(0), health(5), score(0), space_pressed(false), counter(0), mouse_pos({0, 0}), lock_camera(false), status(Status::Attached), R_angle(0), immune_damage(false), im_counter(0), flash_counter(0)
 {
 	this->pos = { window_x / 2 - Arena::long_axis, window_y / 2 - 50};
-	ani_list.push_back(player_right.get());
+	ani_list.push_back(player.get());
 
 	this->width = ani_list[0]->GetWidth();
 	this->height = ani_list[0]->GetHeight();
@@ -34,6 +34,24 @@ Player::Player()
 	Attach();
 
 	srand(time(NULL));
+}
+
+void Player::Reset() {
+	pos = { window_x / 2 - Arena::long_axis, window_y / 2 - 50 };
+	speed = { 0, 0 };
+	acceleration = { 0, 0 };
+	health = 5;
+	score = 0;
+	space_pressed = false;
+	counter = 0;
+	mouse_pos = { 0, 0 };
+	lock_camera = false;
+	status = Status::Attached;
+	Attach();
+	R_angle = 0;
+	immune_damage = false;
+	im_counter = 0;
+	flash_counter = 0;
 }
 
 void Player::Render() {
@@ -71,7 +89,8 @@ void Player::Render() {
 
 void Player::Tick(const int& delta) {
 	if (health <= 0) {
-		ShowGameOverScreen(GetScore());
+		Scene::GetScene().SetCurrentScene(Scene::SceneType::DieMenu);
+		UpdateScore(GetScore());
 		return;
 	}
 

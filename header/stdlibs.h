@@ -9,5 +9,6 @@
 #include <cmath>
 #include <random>
 #include <chrono>
+#include <functional>
 #include <easyx.h>
 #include <wingdi.h>

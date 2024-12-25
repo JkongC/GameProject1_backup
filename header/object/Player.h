@@ -12,6 +12,8 @@ public:
 	
 	Player();
 
+	void Reset();
+
 	void Render() override;
 
 	void Tick(const int& delta) override;

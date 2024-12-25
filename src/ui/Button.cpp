@@ -10,6 +10,7 @@
 #include "resource.h"
 #include "general/SD_Music.h"
 #include "general/scene.h"
+#include "ui/game_screen.h"
 
 const int BUTTON_WIDTH = 192;
 const int BUTTON_HEIGHT = 75;
@@ -25,7 +26,7 @@ StartGameButton::~StartGameButton() = default;
 
 void StartGameButton::OnClick() {
     SD_music_button();
-    Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
+    InitGameScreen();
     SD_music_first_level();
 }
 
@@ -85,6 +86,6 @@ RestartGameButton::~RestartGameButton() = default;
 
 void RestartGameButton::OnClick() {
     SD_music_button();
-    Scene::GetScene().SetCurrentScene(Scene::SceneType::Game);
+    InitGameScreen();
     SD_music_first_level();
 }

@@ -13,14 +13,14 @@
 #include "object/Obstacle.h"
 #include "object/Score.h"
 #include "general/scene.h"
-#include "ui/game_over_screen.h"
 #include "resource.h"
 #include "general/SD_Music.h"
-#include "main_menu.h"
+#include "ui/game_over_screen.h"
+#include "ui/main_menu.h"
+#include "ui/game_screen.h"
 
-//在这里声明要用到的图片，下面只是例子
-IMAGE player_right_img;
-std::unique_ptr<Animation> player_right;  //使用智能指针的话，不用手动释放资源
+IMAGE player_img;
+std::unique_ptr<Animation> player;  //使用智能指针的话，不用手动释放资源
 
 IMAGE game_background;
 IMAGE main_menu_background;
@@ -34,12 +34,11 @@ bool running;
 
 inline int LoadResources() 
 {
-	loadimage(&player_right_img, _T("PNG"), MAKEINTRESOURCE(PLAYER), 76, 76, false);
+	loadimage(&player_img, _T("PNG"), MAKEINTRESOURCE(PLAYER), 76, 76, false);
 	//make_unique的作用是new一个对象然后获取它的unique_ptr
-	player_right = std::make_unique<Animation>(player_right_img, 76, 76, 0, 1, 1);
+	player = std::make_unique<Animation>(player_img, 76, 76, 0, 1, 1);
 
 	loadimage(&game_background, _T("PNG"), MAKEINTRESOURCE(GAME_BG1), window_x, window_y, true);
-	Scene::GetScene().SetSceneBackground(Scene::SceneType::Game, &game_background);
 
 	loadimage(&obstacle, _T("PNG"), MAKEINTRESOURCE(OBSTACLE), 90, 90, false);
 	loadimage(&score_5, _T("PNG"), MAKEINTRESOURCE(SCORE_5), 56, 56, false);
@@ -48,6 +47,10 @@ inline int LoadResources()
 	Score::img_list[0] = &score_5;
 	Score::img_list[1] = &score_10;
 	Score::img_list[2] = &score_20;
+
+	InitGameOverScreen(0);
+	InitGameScreen();
+	InitMainMenu();
 
 	return 0;
 }
@@ -71,13 +74,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	running = true;
 
 	Scene& scene = Scene::GetScene();
-
-	new Player();
-	new Obstacle(0.8 * PI);
-	new Obstacle(0.5 * PI);
-	new Obstacle(-0.6 * PI);
-	
-	ShowMainMenu();
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
@@ -112,7 +108,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		switch (scene.GetCurrentScene())
 		{
 		case Scene::SceneType::Game:
-			ScoreGenerator::GetGenerator().TryGenerate(time_elapsed);
+			GameProcess(time_elapsed);
 			break;
 		case Scene::SceneType::DieMenu:
 			GameOverScreenProcess();

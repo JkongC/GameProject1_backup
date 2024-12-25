@@ -177,11 +177,11 @@
     <ClInclude Include="header\ui\Arena.h" />
     <ClInclude Include="header\ui\Button.h" />
     <ClInclude Include="header\ui\game_over_screen.h" />
-    <ClInclude Include="main_menu.h" />
+    <ClInclude Include="header\ui\game_screen.h" />
+    <ClInclude Include="header\ui\main_menu.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="src\general\event.cpp" />
     <ClCompile Include="src\general\scene.cpp" />
     <ClCompile Include="src\general\SD_music.cpp" />
@@ -201,6 +201,8 @@
     <ClCompile Include="src\ui\Arena.cpp" />
     <ClCompile Include="src\ui\Button.cpp" />
     <ClCompile Include="src\ui\game_over_screen.cpp" />
+    <ClCompile Include="src\ui\game_screen.cpp" />
+    <ClCompile Include="src\ui\main_menu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

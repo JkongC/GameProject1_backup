@@ -11,7 +11,7 @@
 extern IMAGE obstacle;
 
 Obstacle::Obstacle(const double& origin_angle)
-	: img(&obstacle), R_angle(origin_angle)
+	: img(&obstacle), origin_angle(origin_angle), R_angle(origin_angle)
 {
 	this->width = img->getwidth();
 	this->height = img->getheight();
@@ -21,6 +21,11 @@ Obstacle::Obstacle(const double& origin_angle)
 }
 
 Obstacle::~Obstacle() = default;
+
+void Obstacle::Reset()
+{
+	R_angle = origin_angle;
+}
 
 void Obstacle::Tick(const int& delta)
 {

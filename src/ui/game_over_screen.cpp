@@ -12,7 +12,7 @@
 int score;
 IMAGE game_over_bg;
 
-void ShowGameOverScreen(int Score)
+void InitGameOverScreen(const int& Score)
 {
 	Scene::GetScene().SetCurrentScene(Scene::SceneType::DieMenu);
 	score = Score;
@@ -35,6 +35,11 @@ void ShowGameOverScreen(int Score)
 		_T("resources/ui/back_die.png"),
 		_T("resources/ui/back_die.png"),
 		_T("resources/ui/back_die.png"));
+}
+
+void UpdateScore(const int& Score)
+{
+	score = Score;
 }
 
 void GameOverScreenProcess()

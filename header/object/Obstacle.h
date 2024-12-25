@@ -7,6 +7,8 @@ public:
 
 	~Obstacle() override;
 
+	void Reset();
+
 	void Tick(const int& delta) override;
 
 	void Render();
@@ -17,5 +19,6 @@ private:
 
 	const int damage = 1;
 
+	double origin_angle;
 	double R_angle;
 };

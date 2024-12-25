@@ -78,7 +78,9 @@ public:
 
 	void RemoveObject(Object* obj);
 	
-	[[deprecated]] void ClearObjects();
+	void ClearObjects();
+
+	void IterateObjects(std::function<void(Object*)> proc);
 
 private:
 	Scene() : current_scene(SceneType::MainMenu), scene_obj_list(), scene_cam_list(), scene_inputevent_list(), scene_background_list(), player(nullptr) {}

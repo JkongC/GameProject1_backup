@@ -1,5 +1,7 @@
 #pragma once
 
-void ShowGameOverScreen(int score);
+void InitGameOverScreen(const int& Score);
+
+void UpdateScore(const int& score);
 
 void GameOverScreenProcess();

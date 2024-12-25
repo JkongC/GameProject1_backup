@@ -1,4 +1,4 @@
 #pragma once
 
-void ShowMainMenu();
+void InitMainMenu();
 void MainMenuProcess();

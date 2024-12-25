@@ -185,11 +185,20 @@ void Scene::RemoveObject(Object* obj) {
 }
 
 void Scene::ClearObjects() {
+	for (Object*& obj : GetCurrentObjectList()) {
+		delete obj;
+	}
 	GetCurrentObjectList().clear();
 }
 
 std::vector<Object*>& Scene::GetCurrentObjectList() {
 	return this->scene_obj_list[(int)current_scene];
+}
+
+void Scene::IterateObjects(std::function<void(Object*)> proc) {
+	for (Object*& obj : GetCurrentObjectList()) {
+		proc(obj);
+	}
 }
 
 Scene::~Scene() {
