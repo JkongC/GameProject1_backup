@@ -140,6 +140,7 @@
     <Image Include="resources\crystal.png" />
     <Image Include="resources\diemenu_bg1.png" />
     <Image Include="resources\game_bg1.png" />
+    <Image Include="resources\image\icon.ico" />
     <Image Include="resources\image\obstacle.png" />
     <Image Include="resources\image\player.png" />
     <Image Include="resources\image\score_10.png" />
