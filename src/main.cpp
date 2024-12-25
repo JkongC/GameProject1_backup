@@ -130,6 +130,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 			break;
 		case Scene::SceneType::MainMenu:
 			MainMenuProcess();
+			break;
 		default:
 			break;
 		}

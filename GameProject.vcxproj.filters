@@ -149,6 +149,12 @@
     <ClInclude Include="header\object\Score.h">
       <Filter>头文件\object</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\game_over_screen.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="main_menu.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\general\event.cpp">
@@ -195,6 +201,9 @@
     </ClCompile>
     <ClCompile Include="src\ui\game_over_screen.cpp">
       <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="main_menu.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
