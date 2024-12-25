@@ -1,4 +1,4 @@
-#include "stdlibs.h"
+ï»¿#include "stdlibs.h"
 
 #include "ui/main_menu.h"
 #include "general/util.h"
@@ -14,19 +14,19 @@ void InitMainMenu()
 {
     Scene::GetScene().SetCurrentScene(Scene::SceneType::MainMenu);
 
-    // ¼ÓÔØÖ÷²Ëµ¥±³¾°Í¼Æ¬
+    // åŠ è½½ä¸»èœå•èƒŒæ™¯å›¾ç‰‡
     loadimage(&main_menu_bg, _T("PNG"), MAKEINTRESOURCE(MAINMENU_BG1), window_x, window_y, true);
     Scene::GetScene().SetSceneBackground(Scene::SceneType::MainMenu, &main_menu_bg);
 
-    // ´´½¨Ö÷²Ëµ¥°´Å¥
-    // ¿ªÊ¼ÓÎÏ·°´Å¥
+    // åˆ›å»ºä¸»èœå•æŒ‰é’®
+    // å¼€å§‹æ¸¸æˆæŒ‰é’®
     RECT startGameRect = { window_x / 4, window_y / 3, window_x / 4 + 96 * 3, window_y / 3 + 32 * 3};
     StartGameButton* startGameBtn = new StartGameButton(startGameRect,
         _T("resources/ui/start_game_idle.png"),
         _T("resources/ui/start_game_hovered.png"),
         _T("resources/ui/start_game_pushed.png"));
     
-    // ÍË³öÓÎÏ·°´Å¥
+    // é€€å‡ºæ¸¸æˆæŒ‰é’®
     RECT quitGameRect = { window_x / 4, window_y * 5 / 6, window_x / 4 + 96 * 3, window_y * 5 / 6 + 32 * 3 };
     QuitGameButton* quitGameBtn = new QuitGameButton(quitGameRect,
         _T("resources/ui/quit_game_idle.png"),
@@ -35,8 +35,8 @@ void InitMainMenu()
 }
 
 void MainMenuProcess() {
-    // ÔÚÕâÀï´¦ÀíÖ÷²Ëµ¥½çÃæµÄäÖÈ¾Âß¼­£¬ÀıÈçÏÔÊ¾·ÖÊı¡¢±êÌâµÈ
+    // åœ¨è¿™é‡Œå¤„ç†ä¸»èœå•ç•Œé¢çš„æ¸²æŸ“é€»è¾‘ï¼Œä¾‹å¦‚æ˜¾ç¤ºåˆ†æ•°ã€æ ‡é¢˜ç­‰
     settextstyle(70, 50, _T("Microsoft YaHei UI"));
     setbkmode(TRANSPARENT);
-    outtextxy(window_x / 2 - 450, window_y / 4 + 35, _T("»¶Ó­À´µ½ÓÎÏ·Ö÷²Ëµ¥"));
+    outtextxy(window_x / 2 - 450, window_y / 4 + 35, _T("æ¬¢è¿æ¥åˆ°æ¸¸æˆä¸»èœå•"));
 }
