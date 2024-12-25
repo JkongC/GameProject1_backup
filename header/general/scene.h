@@ -81,7 +81,7 @@ public:
 	[[deprecated]] void ClearObjects();
 
 private:
-	Scene() : current_scene(SceneType::Game), scene_obj_list(), scene_cam_list(), scene_inputevent_list(), scene_background_list(), player(nullptr) {}
+	Scene() : current_scene(SceneType::MainMenu), scene_obj_list(), scene_cam_list(), scene_inputevent_list(), scene_background_list(), player(nullptr) {}
 
 	Scene(const Scene&) = delete;
 

@@ -77,18 +77,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 	new Obstacle(0.5 * PI);
 	new Obstacle(-0.6 * PI);
 	
-	//初始化UI按钮
-	//创建开始游戏按钮
-	RECT startGameRect = { 100, 100, 300, 150 };
-	StartGameButton* startGameBtn = new StartGameButton(startGameRect, _T("start_game_idle.png"), _T("start_game_hovered.png"), _T("start_game_pushed.png"));
-
-	// 创建退出游戏按钮
-	RECT quitGameRect = { 100, 200, 300, 250 };
-	QuitGameButton* quitGameBtn = new QuitGameButton(quitGameRect, _T("quit_game_idle.png"), _T("quit_game_hovered.png"), _T("quit_game_pushed.png"));
-
-	// 创建设置按钮
-	RECT settingsRect = { 100, 300, 300, 350 };
-	SettingButton* settingsBtn = new SettingButton(settingsRect, _T("settings_idle.png"), _T("settings_hovered.png"), _T("settings_pushed.png"));
+	ShowMainMenu();
 
 	BeginBatchDraw();
 	Timer timer;  //毫秒计时器
