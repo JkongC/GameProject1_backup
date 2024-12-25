@@ -49,13 +49,6 @@ void Player::Render() {
 	settextstyle(50, 20, _T("Microsoft YaHei UI"));
 	outtextxy(0, 50, score_bar);
 	
-	if (!this->show) return;
-
-	Pos relative = Scene::GetScene().GetCamera().GetRelativePos(this->pos);
-	Transform();
-	ani_list[current_ani_set]->Render(relative.x, relative.y);
-	Untransform();
-
 	switch (this->status)
 	{
 	case Status::Attached:
@@ -66,6 +59,14 @@ void Player::Render() {
 	default:
 		break;
 	}
+
+	if (!this->show) return;
+
+	Pos relative = Scene::GetScene().GetCamera().GetRelativePos(this->pos);
+	Transform();
+	ani_list[current_ani_set]->Render(relative.x, relative.y);
+	Untransform();
+
 }
 
 void Player::Tick(const int& delta) {
