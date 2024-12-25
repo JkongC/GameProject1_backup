@@ -16,6 +16,7 @@
 #include "ui/game_over_screen.h"
 #include "resource.h"
 #include "general/SD_Music.h"
+#include "main_menu.h"
 
 //在这里声明要用到的图片，下面只是例子
 IMAGE player_right_img;
@@ -127,6 +128,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		case Scene::SceneType::DieMenu:
 			GameOverScreenProcess();
 			break;
+		case Scene::SceneType::MainMenu:
+			MainMenuProcess();
 		default:
 			break;
 		}
