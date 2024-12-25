@@ -1,7 +1,7 @@
 ﻿#include "stdlibs.h"
 #include "general/util.h"
 
-void ScalingByPixel(IMAGE** dst, IMAGE* src, int frame_num, const int& scale) {
+void ScalingByPixel(IMAGE** dst, IMAGE* src, int frame_num, const int& scale, bool delete_origin) {
 	IMAGE temp = *src;
 
 	int src_w = temp.getwidth();
@@ -25,4 +25,6 @@ void ScalingByPixel(IMAGE** dst, IMAGE* src, int frame_num, const int& scale) {
 			}
 		}
 	}
+
+	if (delete_origin) delete src;
 }

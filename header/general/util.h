@@ -154,7 +154,7 @@ struct Scoped_Timer
 	}
 };
 
-void ScalingByPixel(IMAGE** dst, IMAGE* src, int frame_num, const int& scale);
+void ScalingByPixel(IMAGE** dst, IMAGE* src, int frame_num, const int& scale, bool delete_origin);
 
 inline void putimage_alpha(IMAGE* image, int x, int y, int xsrc, int ysrc, int width, int height) {
 	AlphaBlend(GetImageHDC(), x, y, width, height, GetImageHDC(image),

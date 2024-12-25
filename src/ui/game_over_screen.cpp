@@ -23,14 +23,14 @@ void InitGameOverScreen(const int& Score)
 
 	//创建按钮
 	//重新开始按钮
-	RECT RePlayRect = { window_x / 4, window_y * 3 / 4, window_x * 3 / 4, window_y * 4 / 4 };
+	RECT RePlayRect = { window_x / 5, window_y * 3 / 4, window_x / 5 + 114 * 3, window_y * 3 / 4 + 28 * 3};
 	RestartGameButton* restartBtn = new RestartGameButton(RePlayRect,
 		_T("resources/ui/playagain.png"),
 		_T("resources/ui/playagain.png"),
 		_T("resources/ui/playagain.png"));
 
 	//返回主菜单按钮
-	RECT backRect = { window_x / 4, window_y * 5 / 6, window_x * 3 / 4, window_y * 6 / 6 };
+	RECT backRect = { window_x * 2 / 3, window_y * 3 / 4, window_x * 2 / 3 + 58 * 3, window_y * 3 / 4 + 22 * 3};
 	BackButton* BackBtn = new BackButton(backRect,
 		_T("resources/ui/back_die.png"),
 		_T("resources/ui/back_die.png"),
@@ -44,9 +44,9 @@ void UpdateScore(const int& Score)
 
 void GameOverScreenProcess()
 {
-	settextstyle(50, 100, _T("Microsoft YaHei UI"));
-	outtextxy(window_x / 2 - 200, window_y / 3, _T("游戏结束"));
+	settextstyle(120, 50, _T("Microsoft YaHei UI"));
+	setbkmode(TRANSPARENT);
 	TCHAR scoreText[50];
-	_stprintf_s(scoreText, _T("得分：%d"), score);
-	outtextxy(window_x / 2 - 100, window_y / 2, scoreText);
+	_stprintf_s(scoreText, _T("%d"), score);
+	outtextxy(window_x / 2 - 300, window_y / 2 + 50, scoreText);
 }

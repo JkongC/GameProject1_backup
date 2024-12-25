@@ -8,7 +8,7 @@ Animation::Animation(IMAGE new_atlas, int width, int height, int interval, int f
 	IMAGE* actual;
 	this->width = width * scale;
 	this->height = height * scale;
-	ScalingByPixel(&actual, &new_atlas, frame_num, scale);
+	ScalingByPixel(&actual, &new_atlas, frame_num, scale, false);
 	this->atlas = actual;
 }
 

@@ -20,14 +20,14 @@ void InitMainMenu()
 
     // 创建主菜单按钮
     // 开始游戏按钮
-    RECT startGameRect = { window_x / 4, window_y / 3, window_x * 3 / 4, window_y * 2 / 3 };
+    RECT startGameRect = { window_x / 4, window_y / 3, window_x / 4 + 96 * 3, window_y / 3 + 32 * 3};
     StartGameButton* startGameBtn = new StartGameButton(startGameRect,
         _T("resources/ui/start_game_idle.png"),
         _T("resources/ui/start_game_hovered.png"),
         _T("resources/ui/start_game_pushed.png"));
     
     // 退出游戏按钮
-    RECT quitGameRect = { window_x / 4, window_y * 5 / 6, window_x * 3 / 4, window_y * 6 / 6 };
+    RECT quitGameRect = { window_x / 4, window_y * 5 / 6, window_x / 4 + 96 * 3, window_y * 5 / 6 + 32 * 3 };
     QuitGameButton* quitGameBtn = new QuitGameButton(quitGameRect,
         _T("resources/ui/quit_game_idle.png"),
         _T("resources/ui/quit_game_hovered.png"),
@@ -36,6 +36,7 @@ void InitMainMenu()
 
 void MainMenuProcess() {
     // 在这里处理主菜单界面的渲染逻辑，例如显示分数、标题等
-    settextstyle(50, 100, _T("Microsoft YaHei UI"));
-    outtextxy(window_x / 2 - 200, window_y / 4, _T("欢迎来到游戏主菜单"));
+    settextstyle(70, 50, _T("Microsoft YaHei UI"));
+    setbkmode(TRANSPARENT);
+    outtextxy(window_x / 2 - 450, window_y / 4 + 35, _T("欢迎来到游戏主菜单"));
 }

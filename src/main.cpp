@@ -97,8 +97,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 
 		cleardevice();
 		scene.Render();  //场景批量渲染
-
-		FlushBatchDraw();
 		
 		const int& time_elapsed = timer.SinceLast();  //计算自从上次调用Start或SinceLast以来，经过的时间
 
@@ -119,6 +117,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevHInstance, 
 		default:
 			break;
 		}
+
+		FlushBatchDraw();
 
 		//帧数控制
 		if (time_elapsed < 1000 / 144) {
