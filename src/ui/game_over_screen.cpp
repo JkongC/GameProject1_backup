@@ -8,7 +8,7 @@
 #include "ui/Button.h"
 #include "general/event.h"
 #include "general/scene.h"
-
+#include "general/SD_Music.h"
 int score;
 IMAGE game_over_bg;
 
@@ -40,6 +40,8 @@ void InitGameOverScreen(const int& Score)
 void UpdateScore(const int& Score)
 {
 	score = Score;
+	//À¿Õˆ“Ù¿÷
+	SD_music_failure();
 }
 
 void GameOverScreenProcess()
