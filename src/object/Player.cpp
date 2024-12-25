@@ -176,6 +176,7 @@ void Player::Launch() {
 
 void Player::Attach() {
 	SetStatus(Status::Attached);
+	show = true;
 
 	Vec2d speed_norm = speed;
 	speed_norm.Normalize(3);

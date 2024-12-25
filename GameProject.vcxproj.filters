@@ -155,11 +155,11 @@
     <ClInclude Include="header\ui\game_over_screen.h">
       <Filter>头文件\ui</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\game_screen.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="header\ui\main_menu.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\game_screen.h">
+      <Filter>头文件\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
